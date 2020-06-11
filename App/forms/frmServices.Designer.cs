@@ -1,6 +1,6 @@
 ﻿namespace App
 {
-    partial class Servicos
+    partial class frmServices
     {
         /// <summary>
         /// Required designer variable.

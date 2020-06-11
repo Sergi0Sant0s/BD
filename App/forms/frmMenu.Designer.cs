@@ -55,6 +55,7 @@
             this.btnServices.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnServices.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnServices.UseVisualStyleBackColor = false;
+            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
             // 
             // btnClientes
             // 
@@ -73,6 +74,7 @@
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnClientes.UseVisualStyleBackColor = false;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnVeiculos
             // 
@@ -91,6 +93,7 @@
             this.btnVeiculos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVeiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnVeiculos.UseVisualStyleBackColor = false;
+            this.btnVeiculos.Click += new System.EventHandler(this.btnVeiculos_Click);
             // 
             // btnPecas
             // 
@@ -109,6 +112,7 @@
             this.btnPecas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPecas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnPecas.UseVisualStyleBackColor = false;
+            this.btnPecas.Click += new System.EventHandler(this.btnPecas_Click);
             // 
             // btnFornecedores
             // 
@@ -127,6 +131,7 @@
             this.btnFornecedores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFornecedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnFornecedores.UseVisualStyleBackColor = false;
+            this.btnFornecedores.Click += new System.EventHandler(this.btnFornecedores_Click);
             // 
             // btnExit
             // 

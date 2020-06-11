@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using App.forms;
 
 namespace App
 {
@@ -29,16 +30,6 @@ namespace App
             btnVeiculos.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMin_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -54,6 +45,58 @@ namespace App
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        /* END FORM */
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmClient client = new frmClient();
+            client.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnServices_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmServices services = new frmServices();
+            services.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnPecas_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmPart parts = new frmPart();
+            parts.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnFornecedores_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmFornecedores fornecedores = new frmFornecedores();
+            fornecedores.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnVeiculos_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmVeiculos veiculos = new frmVeiculos();
+            veiculos.ShowDialog();
+            this.Visible = true;
         }
     }
 }
