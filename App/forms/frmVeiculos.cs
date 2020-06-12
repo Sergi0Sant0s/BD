@@ -85,6 +85,12 @@ namespace App.forms
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            tbMatriculaEdit.Text = string.Empty;
+            tbAno.Text = string.Empty;
+            tbMarca.Text = string.Empty;
+            tbModelo.Text = string.Empty;
+            tbClienteEdit.Text = string.Empty;
+            //
             btnEdit.Visible = false;
             btnDelete.Visible = false;
             btnNew.Visible = false;
@@ -97,20 +103,13 @@ namespace App.forms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             /*Carregar os dados*/
-
-            btnEdit.Visible = false;
-            btnDelete.Visible = false;
-            btnNew.Visible = false;
-            btnClose.Visible = false;
-            btnCancelar.Visible = true;
-            btnGuardar.Visible = true;
-            tbDefault.SelectedIndex = 1;
+            Edit();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             /*Obter o veiculo*/
-            if(MessageBox.Show(string.Format("Tem certeza que deseja eliminar o veiculo {0}","x"),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Tem certeza que deseja eliminar o veiculo com a matricula {0}?", dgvList.SelectedRows[0].Cells[0].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 /*Eliminar o veiculo*/
                 MessageBox.Show("Veiculo Eliminado.","Resultado",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -171,6 +170,33 @@ namespace App.forms
             var check = Veiculos.Filter(tbMatricula.Text, marca, modelo, tbClient.Text, year);
             if (check != null)
                 dgvList.DataSource = check;
+        }
+
+        private void dgvList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Edit();
+        }
+
+        private void Edit()
+        {
+            if (dgvList.SelectedRows.Count != 0)
+            {
+                var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
+                tbMatriculaEdit.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                tbAno.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
+                tbMarca.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
+                tbModelo.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
+                tbClienteEdit.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
+                //
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                btnNew.Visible = false;
+                btnClose.Visible = false;
+                btnCancelar.Visible = true;
+                btnGuardar.Visible = true;
+                //
+                tbDefault.SelectedIndex = 1;
+            }
         }
     }
 }
