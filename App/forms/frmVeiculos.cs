@@ -22,6 +22,9 @@ namespace App.forms
         private void frmVeiculos_Load(object sender, EventArgs e)
         {
             dgvList.DataSource = Veiculos.GetAllVeiculos();
+            cbBrand.DataSource = Veiculos.GetAllBrands();
+            cbModelo.DataSource = Veiculos.GetAllModels();
+            cbYear.DataSource = Veiculos.GetAllYears();
             tbDefault.Appearance = TabAppearance.FlatButtons;
             tbDefault.ItemSize = new Size(0, 1);
             tbDefault.SizeMode = TabSizeMode.Fixed;
@@ -133,6 +136,41 @@ namespace App.forms
         {
             if(tbDefault.SelectedIndex == 0)
                 dgvList.DataSource = Veiculos.GetAllVeiculos();
+        }
+
+        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbModelo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbMatricula_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbClient_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void Filter()
+        {
+            string modelo = cbModelo.SelectedIndex == 0 ? "" : this.cbModelo.GetItemText(this.cbModelo.SelectedItem);
+            string marca = cbBrand.SelectedIndex == 0 ? "" : this.cbBrand.GetItemText(this.cbBrand.SelectedItem);
+            string year = cbYear.SelectedIndex == 0 ? "" : this.cbYear.GetItemText(this.cbYear.SelectedItem);
+            var check = Veiculos.Filter(tbMatricula.Text, marca, modelo, tbClient.Text, year);
+            if (check != null)
+                dgvList.DataSource = check;
         }
     }
 }
