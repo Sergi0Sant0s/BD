@@ -25,17 +25,6 @@ namespace App.forms
             cbBrand.DataSource = Veiculos.GetAllBrands();
             cbModelo.DataSource = Veiculos.GetAllModels();
             cbYear.DataSource = Veiculos.GetAllYears();
-            tbDefault.Appearance = TabAppearance.FlatButtons;
-            tbDefault.ItemSize = new Size(0, 1);
-            tbDefault.SizeMode = TabSizeMode.Fixed;
-
-            /*Datagridview opacity*/
-            Color colDefault = dgvList.BackColor;
-            //dgvList.BackgroundColor = Color.FromArgb(200, colDefault.R, colDefault.G, colDefault.B);
-            //menuStrip1.BackColor = Color.FromArgb(150, colDefault.R, colDefault.G, colDefault.B);
-            //btnMinimize.BackColor = Color.FromArgb(150, colDefault.R, colDefault.G, colDefault.B);
-            //tabPage1.BackColor = Color.FromArgb(150, colDefault.R, colDefault.G, colDefault.B);
-            //tabPage2.BackColor = Color.FromArgb(150, colDefault.R, colDefault.G, colDefault.B);
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -98,6 +87,7 @@ namespace App.forms
             btnCancelar.Visible = true;
             btnGuardar.Visible = true;
             tbDefault.SelectedIndex = 1;
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -112,16 +102,20 @@ namespace App.forms
             if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Tem certeza que deseja eliminar o veiculo com a matricula {0}?", dgvList.SelectedRows[0].Cells[0].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 /*Eliminar o veiculo*/
-                MessageBox.Show("Veiculo Eliminado.","Resultado",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
-
-                /*Se der erro*/
-                //MessageBox.Show("Não foi possivel eliminadar o veiculo.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(Veiculos.DeleteVeiculo(dgvList.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    MessageBox.Show("Veiculo Eliminado.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvList.DataSource = Veiculos.GetAllVeiculos();
+                }
+                else
+                    MessageBox.Show("Não foi possivel eliminadar o veiculo.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }                
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            tbMatriculaEdit.Enabled = true;
             btnEdit.Visible = true;
             btnDelete.Visible = true;
             btnNew.Visible = true;
@@ -133,7 +127,7 @@ namespace App.forms
 
         private void tbDefault_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tbDefault.SelectedIndex == 0)
+            if (!btnGuardar.Visible && !btnCancelar.Visible && tbDefault.SelectedIndex == 0)
                 dgvList.DataSource = Veiculos.GetAllVeiculos();
         }
 
@@ -183,6 +177,7 @@ namespace App.forms
             {
                 var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
                 tbMatriculaEdit.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                tbMatriculaEdit.Enabled = false;
                 tbAno.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
                 tbMarca.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
                 tbModelo.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
@@ -197,6 +192,20 @@ namespace App.forms
                 //
                 tbDefault.SelectedIndex = 1;
             }
+        }
+
+        private void tbDefault_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (btnGuardar.Visible && btnCancelar.Visible && tbDefault.SelectedIndex == 1)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Esta no modo de edição.\nConclua o processo e volte a tentar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            tbMatriculaEdit.Enabled = true;
         }
     }
 }

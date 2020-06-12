@@ -137,6 +137,40 @@ namespace Service
             }
         }
 
+        public static bool DeleteVeiculo(string matricula)
+        {
+            try
+            {
+                string query = string.Format("Delete from veiculo where matricula = UPPER('{0}');",matricula);
+                NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
+                pgsqlConnection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                return reader.RecordsAffected != 0 ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool UpdateVeiculo(string matricula, string marca, string modelo, int cliente, string ano)
+        {
+            try
+            {
+                string query = string.Format("Update veiculo set marca = '{1}', modelo = '{2}', ano = '{3}', cliente = {4} where matricula = UPPER('{0}');", matricula,marca,modelo,ano,cliente);
+                NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
+                pgsqlConnection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                return reader.RecordsAffected != 0 ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public static DataTable Filter(string matricula, string marca, string modelo, string cliente, string ano)
         {
             try

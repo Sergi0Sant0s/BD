@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeiculos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,10 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.ribbon1 = new System.Windows.Forms.Ribbon();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.tbRbList = new System.Windows.Forms.RibbonTab();
-            this.tbRibProcess = new System.Windows.Forms.RibbonTab();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeiculos));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +43,7 @@
             this.btnGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabProcess = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tbClienteEdit = new System.Windows.Forms.TextBox();
@@ -59,7 +55,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabList = new System.Windows.Forms.TabPage();
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -79,72 +75,11 @@
             this.tbDefault = new System.Windows.Forms.TabControl();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabProcess.SuspendLayout();
+            this.tabList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.tbDefault.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ribbon1
-            // 
-            this.ribbon1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ribbon1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ribbon1.BorderMode = System.Windows.Forms.RibbonWindowMode.InsideWindow;
-            this.ribbon1.CaptionBarVisible = false;
-            this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ribbon1.Location = new System.Drawing.Point(0, 37);
-            this.ribbon1.Minimized = false;
-            this.ribbon1.Name = "ribbon1";
-            // 
-            // 
-            // 
-            this.ribbon1.OrbDropDown.BorderRoundness = 8;
-            this.ribbon1.OrbDropDown.Location = new System.Drawing.Point(0, 0);
-            this.ribbon1.OrbDropDown.Name = "";
-            this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 72);
-            this.ribbon1.OrbDropDown.TabIndex = 0;
-            this.ribbon1.OrbStyle = System.Windows.Forms.RibbonOrbStyle.Office_2013;
-            this.ribbon1.OrbText = "Opções";
-            this.ribbon1.OrbVisible = false;
-            // 
-            // 
-            // 
-            this.ribbon1.QuickAccessToolbar.FlashEnabled = true;
-            this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton1);
-            this.ribbon1.QuickAccessToolbar.Text = "Novo";
-            this.ribbon1.QuickAccessToolbar.Value = "Novo";
-            this.ribbon1.QuickAccessToolbar.Visible = false;
-            this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ribbon1.Size = new System.Drawing.Size(933, 27);
-            this.ribbon1.TabIndex = 0;
-            this.ribbon1.Tabs.Add(this.tbRbList);
-            this.ribbon1.Tabs.Add(this.tbRibProcess);
-            this.ribbon1.TabSpacing = 4;
-            this.ribbon1.Text = "ribbon1";
-            // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            this.ribbonButton1.Text = "Novo";
-            this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
-            this.ribbonButton1.Value = "Novo";
-            this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
-            // 
-            // tbRbList
-            // 
-            this.tbRbList.Name = "tbRbList";
-            this.tbRbList.Text = "Lista";
-            this.tbRbList.ActiveChanged += new System.EventHandler(this.tbRbList_ActiveChanged);
-            // 
-            // tbRibProcess
-            // 
-            this.tbRibProcess.Name = "tbRibProcess";
-            this.tbRibProcess.Text = "Processo";
-            this.tbRibProcess.ActiveChanged += new System.EventHandler(this.tbRibProcess_ActiveChanged);
             // 
             // menuStrip1
             // 
@@ -191,6 +126,7 @@
             this.btnGuardar.Size = new System.Drawing.Size(61, 33);
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.Visible = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -207,25 +143,25 @@
             this.btnClose.Text = "Fechar";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // tabPage2
+            // tabProcess
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.tbClienteEdit);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.tbModelo);
-            this.tabPage2.Controls.Add(this.tbMarca);
-            this.tabPage2.Controls.Add(this.tbAno);
-            this.tabPage2.Controls.Add(this.tbMatriculaEdit);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(925, 364);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tabProcess.Controls.Add(this.button1);
+            this.tabProcess.Controls.Add(this.label6);
+            this.tabProcess.Controls.Add(this.tbClienteEdit);
+            this.tabProcess.Controls.Add(this.label5);
+            this.tabProcess.Controls.Add(this.tbModelo);
+            this.tabProcess.Controls.Add(this.tbMarca);
+            this.tabProcess.Controls.Add(this.tbAno);
+            this.tabProcess.Controls.Add(this.tbMatriculaEdit);
+            this.tabProcess.Controls.Add(this.label4);
+            this.tabProcess.Controls.Add(this.label3);
+            this.tabProcess.Controls.Add(this.label2);
+            this.tabProcess.Location = new System.Drawing.Point(4, 25);
+            this.tabProcess.Name = "tabProcess";
+            this.tabProcess.Size = new System.Drawing.Size(925, 388);
+            this.tabProcess.TabIndex = 1;
+            this.tabProcess.Text = "Processo";
             // 
             // button1
             // 
@@ -317,26 +253,26 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Matricula";
             // 
-            // tabPage1
+            // tabList
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabPage1.Controls.Add(this.cbYear);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.tbMatricula);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.tbClient);
-            this.tabPage1.Controls.Add(this.cbModelo);
-            this.tabPage1.Controls.Add(this.cbBrand);
-            this.tabPage1.Controls.Add(this.dgvList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(925, 364);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabList.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tabList.Controls.Add(this.cbYear);
+            this.tabList.Controls.Add(this.label10);
+            this.tabList.Controls.Add(this.label9);
+            this.tabList.Controls.Add(this.label8);
+            this.tabList.Controls.Add(this.label7);
+            this.tabList.Controls.Add(this.tbMatricula);
+            this.tabList.Controls.Add(this.label1);
+            this.tabList.Controls.Add(this.tbClient);
+            this.tabList.Controls.Add(this.cbModelo);
+            this.tabList.Controls.Add(this.cbBrand);
+            this.tabList.Controls.Add(this.dgvList);
+            this.tabList.Location = new System.Drawing.Point(4, 25);
+            this.tabList.Name = "tabList";
+            this.tabList.Padding = new System.Windows.Forms.Padding(3);
+            this.tabList.Size = new System.Drawing.Size(925, 388);
+            this.tabList.TabIndex = 0;
+            this.tabList.Text = "Lista";
             // 
             // cbYear
             // 
@@ -548,17 +484,19 @@
             // 
             // tbDefault
             // 
-            this.tbDefault.Controls.Add(this.tabPage1);
-            this.tbDefault.Controls.Add(this.tabPage2);
+            this.tbDefault.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tbDefault.Controls.Add(this.tabList);
+            this.tbDefault.Controls.Add(this.tabProcess);
             this.tbDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDefault.Location = new System.Drawing.Point(0, 64);
+            this.tbDefault.Location = new System.Drawing.Point(0, 37);
             this.tbDefault.Margin = new System.Windows.Forms.Padding(0);
             this.tbDefault.Name = "tbDefault";
             this.tbDefault.Padding = new System.Drawing.Point(0, 0);
             this.tbDefault.SelectedIndex = 0;
-            this.tbDefault.Size = new System.Drawing.Size(933, 390);
+            this.tbDefault.Size = new System.Drawing.Size(933, 417);
             this.tbDefault.TabIndex = 1;
             this.tbDefault.SelectedIndexChanged += new System.EventHandler(this.tbDefault_SelectedIndexChanged);
+            this.tbDefault.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tbDefault_Deselecting);
             // 
             // btnMinimize
             // 
@@ -582,7 +520,6 @@
             this.ClientSize = new System.Drawing.Size(933, 454);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.tbDefault);
-            this.Controls.Add(this.ribbon1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -593,10 +530,10 @@
             this.Load += new System.EventHandler(this.frmVeiculos_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabProcess.ResumeLayout(false);
+            this.tabProcess.PerformLayout();
+            this.tabList.ResumeLayout(false);
+            this.tabList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.tbDefault.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -604,18 +541,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Ribbon ribbon1;
-        private System.Windows.Forms.RibbonTab tbRbList;
-        private System.Windows.Forms.RibbonTab tbRibProcess;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem btnNew;
         private System.Windows.Forms.ToolStripMenuItem btnEdit;
         private System.Windows.Forms.ToolStripMenuItem btnDelete;
         private System.Windows.Forms.ToolStripMenuItem btnClose;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabProcess;
+        private System.Windows.Forms.TabPage tabList;
         private System.Windows.Forms.TabControl tbDefault;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.DataGridView dgvList;
