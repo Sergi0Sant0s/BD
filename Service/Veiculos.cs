@@ -22,7 +22,7 @@ namespace Service
                     pgsqlConnection.Open();
                     string cmdSeleciona =
                     "select matricula , marca , modelo , ano , cli.Nome as Cliente from veiculo " +
-                    "inner join Cliente cli on veiculo.cliente_id = cli.id;";
+                    "inner join Cliente cli on veiculo.cliente_id = cli.id order by matricula;";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {

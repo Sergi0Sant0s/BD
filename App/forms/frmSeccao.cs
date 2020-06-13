@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace App.forms
 {
-    public partial class frmFornecedores : Form
+    public partial class frmSeccao : Form
     {
-        public frmFornecedores()
+        public frmSeccao()
         {
             InitializeComponent();
         }
@@ -21,9 +21,9 @@ namespace App.forms
 
         private void frmVeiculos_Load(object sender, EventArgs e)
         {
-            
-            dgvList.DataSource = Fornecedores.GetAllFornecedores();
-            if(dgvList.Rows.Count> 0)
+
+            UpdateGrid();
+            if (dgvList.Rows.Count> 0)
             {
                 //cbBrand.DataSource = Veiculos.GetAllBrands();
                 //cbModelo.DataSource = Veiculos.GetAllModels();
@@ -77,12 +77,9 @@ namespace App.forms
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            tbMatriculaEdit.Text = string.Empty;
-            tbMatriculaEdit.Enabled = true;
-            tbAno.Text = string.Empty;
-            tbMarca.Text = string.Empty;
-            tbModelo.Text = string.Empty;
-            tbClienteEdit.Text = string.Empty;
+            tbId.Text = Seccao.GetNewId().ToString();
+            tbNome.Text = string.Empty;
+            tbNome.Enabled = true;
             //
             btnEdit.Visible = false;
             btnDelete.Visible = false;
@@ -110,7 +107,7 @@ namespace App.forms
                 if(Veiculos.DeleteVeiculo(dgvList.SelectedRows[0].Cells[0].Value.ToString()))
                 {
                     MessageBox.Show("Veiculo Eliminado.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvList.DataSource = Veiculos.GetAllVeiculos();
+                    UpdateGrid();
                 }
                 else
                     MessageBox.Show("Não foi possivel eliminadar o veiculo.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -121,7 +118,6 @@ namespace App.forms
         {
             if (dgvList.Rows.Count > 0)
             {
-                tbMatriculaEdit.Enabled = true;
                 btnEdit.Visible = true;
                 btnDelete.Visible = true;
                 btnNew.Visible = true;
@@ -140,42 +136,7 @@ namespace App.forms
         private void tbDefault_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!btnGuardar.Visible && !btnCancelar.Visible && tbDefault.SelectedIndex == 0)
-                dgvList.DataSource = Veiculos.GetAllVeiculos();
-        }
-
-        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbModelo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbMatricula_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbClient_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void Filter()
-        {
-            string modelo = cbModelo.SelectedIndex == 0 ? "" : this.cbModelo.GetItemText(this.cbModelo.SelectedItem);
-            string marca = cbBrand.SelectedIndex == 0 ? "" : this.cbBrand.GetItemText(this.cbBrand.SelectedItem);
-            string year = cbYear.SelectedIndex == 0 ? "" : this.cbYear.GetItemText(this.cbYear.SelectedItem);
-            var check = Veiculos.Filter(tbMatricula.Text, marca, modelo, tbClient.Text, year);
-            if (check != null)
-                dgvList.DataSource = check;
+                UpdateGrid();
         }
 
         private void dgvList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -185,25 +146,35 @@ namespace App.forms
 
         private void Edit()
         {
-            if (dgvList.SelectedRows.Count != 0)
+            if(tbDefault.SelectedIndex == 0)
             {
-                var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
-                tbMatriculaEdit.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
-                tbMatriculaEdit.Enabled = false;
-                tbAno.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
-                tbMarca.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
-                tbModelo.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
-                tbClienteEdit.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
-                //
+                if (dgvList.SelectedRows.Count != 0)
+                {
+                    var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
+                    tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                    tbNome.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
+                    //
+                    btnEdit.Visible = false;
+                    btnDelete.Visible = false;
+                    btnNew.Visible = false;
+                    btnClose.Visible = false;
+                    btnCancelar.Visible = true;
+                    btnGuardar.Visible = true;
+                    //
+                    tbDefault.SelectedIndex = 1;
+                }
+            }
+            else
+            {
+                tbNome.Enabled = true;
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;
                 btnNew.Visible = false;
                 btnClose.Visible = false;
                 btnCancelar.Visible = true;
                 btnGuardar.Visible = true;
-                //
-                tbDefault.SelectedIndex = 1;
             }
+            
         }
 
         private void tbDefault_Deselecting(object sender, TabControlCancelEventArgs e)
@@ -217,7 +188,39 @@ namespace App.forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            tbMatriculaEdit.Enabled = true;
+            bool check = false;
+            int id = -1;
+
+            foreach (DataGridViewRow row in dgvList.Rows)
+                if (row.Cells[0].Value.ToString().Equals(tbId.Text))
+                {
+                    check = true;
+                    id = Convert.ToInt32(row.Cells[0].Value);
+                }
+
+            if (!check)
+            {
+                if (Seccao.NewSeccao(tbNome.Text))
+                    MessageBox.Show("Cliente adicionado com sucesso.");
+                else
+                    MessageBox.Show("Não foi possivel adicionar o novo cliente.");
+            }
+            else if (id != -1)
+            {
+                if (Seccao.UpdateSeccao(id, tbNome.Text))
+                    MessageBox.Show("Cliente atualizado com sucesso.");
+                else
+                    MessageBox.Show("Não foi possivel atualizar o cliente.");
+            }
+
+            tbNome.Enabled = false;
+            btnEdit.Visible = true;
+            btnDelete.Visible = true;
+            btnNew.Visible = true;
+            btnClose.Visible = true;
+            btnCancelar.Visible = false;
+            btnGuardar.Visible = false;
+            tbDefault.SelectedIndex = 0;
         }
 
         private void tbDefault_Selected(object sender, TabControlEventArgs e)
@@ -225,27 +228,25 @@ namespace App.forms
             if(tbDefault.SelectedIndex == 1 && btnEdit.Visible)
             {
                 var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
-                tbMatriculaEdit.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
-                tbAno.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
-                tbMarca.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
-                tbModelo.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
-                tbClienteEdit.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
-                tbMatriculaEdit.Enabled = false;
+                tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                tbNome.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
                 //
             }
             
             if(!btnEdit.Visible || !btnNew.Visible)
             {
-                tbAno.Enabled = true;
-                tbMarca.Enabled = true;
-                tbModelo.Enabled = true;
+                tbNome.Enabled = true;
             }
             else
             {
-                tbAno.Enabled = false;
-                tbMarca.Enabled = false;
-                tbModelo.Enabled = false;
+                tbNome.Enabled = false;
             }
+        }
+
+
+        private void UpdateGrid()
+        {
+            dgvList.DataSource =  Seccao.GetAllSeccoes();
         }
     }
 }

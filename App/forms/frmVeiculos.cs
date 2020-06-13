@@ -21,10 +21,24 @@ namespace App.forms
 
         private void frmVeiculos_Load(object sender, EventArgs e)
         {
+            
             dgvList.DataSource = Veiculos.GetAllVeiculos();
-            cbBrand.DataSource = Veiculos.GetAllBrands();
-            cbModelo.DataSource = Veiculos.GetAllModels();
-            cbYear.DataSource = Veiculos.GetAllYears();
+            if(dgvList.Rows.Count> 0)
+            {
+                cbBrand.DataSource = Veiculos.GetAllBrands();
+                cbModelo.DataSource = Veiculos.GetAllModels();
+                cbYear.DataSource = Veiculos.GetAllYears();
+            }
+            else
+            {
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                btnNew.Visible = false;
+                btnClose.Visible = false;
+                btnCancelar.Visible = true;
+                btnGuardar.Visible = true;
+                tbDefault.SelectedIndex = 1;
+            }
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -51,17 +65,6 @@ namespace App.forms
             MessageBox.Show("Funciona");
         }
 
-        private void tbRbList_ActiveChanged(object sender, EventArgs e)
-        {
-            tbDefault.SelectedIndex = 0;
-        }
-
-        private void tbRibProcess_ActiveChanged(object sender, EventArgs e)
-        {
-            tbDefault.SelectedIndex = 1;
-            
-        }
-
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -75,6 +78,7 @@ namespace App.forms
         private void btnNew_Click(object sender, EventArgs e)
         {
             tbMatriculaEdit.Text = string.Empty;
+            tbMatriculaEdit.Enabled = true;
             tbAno.Text = string.Empty;
             tbMarca.Text = string.Empty;
             tbModelo.Text = string.Empty;
@@ -115,14 +119,22 @@ namespace App.forms
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            tbMatriculaEdit.Enabled = true;
-            btnEdit.Visible = true;
-            btnDelete.Visible = true;
-            btnNew.Visible = true;
-            btnClose.Visible = true;
-            btnCancelar.Visible = false;
-            btnGuardar.Visible = false;
-            tbDefault.SelectedIndex = 0;
+            if (dgvList.Rows.Count > 0)
+            {
+                tbMatriculaEdit.Enabled = true;
+                btnEdit.Visible = true;
+                btnDelete.Visible = true;
+                btnNew.Visible = true;
+                btnClose.Visible = true;
+                btnCancelar.Visible = false;
+                btnGuardar.Visible = false;
+                tbDefault.SelectedIndex = 0;
+            }
+            else
+            {
+                MessageBox.Show("Não existem veiculos a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+                
         }
 
         private void tbDefault_SelectedIndexChanged(object sender, EventArgs e)
@@ -206,6 +218,34 @@ namespace App.forms
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             tbMatriculaEdit.Enabled = true;
+        }
+
+        private void tbDefault_Selected(object sender, TabControlEventArgs e)
+        {
+            if(tbDefault.SelectedIndex == 1 && btnEdit.Visible)
+            {
+                var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
+                tbMatriculaEdit.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                tbAno.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
+                tbMarca.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
+                tbModelo.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
+                tbClienteEdit.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
+                tbMatriculaEdit.Enabled = false;
+                //
+            }
+            
+            if(!btnEdit.Visible || !btnNew.Visible)
+            {
+                tbAno.Enabled = true;
+                tbMarca.Enabled = true;
+                tbModelo.Enabled = true;
+            }
+            else
+            {
+                tbAno.Enabled = false;
+                tbMarca.Enabled = false;
+                tbModelo.Enabled = false;
+            }
         }
     }
 }

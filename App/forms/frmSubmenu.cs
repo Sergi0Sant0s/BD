@@ -12,9 +12,9 @@ using App.forms_auxiliares;
 
 namespace App
 {
-    public partial class Menu : Form
+    public partial class frmSubmenu : Form
     {
-        public Menu()
+        public frmSubmenu()
         {
             InitializeComponent();
         }
@@ -25,10 +25,9 @@ namespace App
             int trans = 175;
             btnClientes.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnExit.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
-            btnPecas.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
-            btnServices.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
-            btnVeiculos.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
-            btnParam.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
+            btnSeccao.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
+            btnFornecedores.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
+
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -52,7 +51,7 @@ namespace App
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnMin_Click(object sender, EventArgs e)
@@ -60,25 +59,19 @@ namespace App
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
+        private void btnFuncionarios_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            frmCliente cli = new frmCliente();
+            frmFuncionario cli = new frmFuncionario();
             cli.ShowDialog();
             this.Visible = true;
         }
 
-        private void btnServices_Click(object sender, EventArgs e)
+        private void btnSeccao_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-
-            this.Visible = true;
-        }
-
-        private void btnPecas_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-
+            frmSeccao sec = new frmSeccao();
+            sec.ShowDialog();
             this.Visible = true;
         }
 
@@ -87,25 +80,6 @@ namespace App
             this.Visible = false;
             frmFornecedores forn = new frmFornecedores();
             forn.ShowDialog();
-            this.Visible = true;
-        }
-
-        private void btnVeiculos_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            frmVeiculos vei = new frmVeiculos();
-            vei.ShowDialog();
-            this.Visible = true;
-        }
-
-        private void btnParam_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            //frmParamMenu param = new frmParamMenu();
-            //param.ShowDialog();
-            frmSubmenu sub = new frmSubmenu();
-            sub.ShowDialog();
-            
             this.Visible = true;
         }
     }

@@ -80,17 +80,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="forms\frmClient.cs">
+    <Compile Include="forms\frmFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmClient.Designer.cs">
-      <DependentUpon>frmClient.cs</DependentUpon>
+    <Compile Include="forms\frmFuncionario.Designer.cs">
+      <DependentUpon>frmFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmFornecedores.cs">
+    <Compile Include="forms\frmSubmenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmFornecedores.Designer.cs">
-      <DependentUpon>frmFornecedores.cs</DependentUpon>
+    <Compile Include="forms\frmSubmenu.Designer.cs">
+      <DependentUpon>frmSubmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSeccao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSeccao.Designer.cs">
+      <DependentUpon>frmSeccao.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmMenu.cs">
       <SubType>Form</SubType>
@@ -98,17 +104,23 @@
     <Compile Include="forms\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmPart.cs">
+    <Compile Include="forms\frmFornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmPart.Designer.cs">
-      <DependentUpon>frmPart.cs</DependentUpon>
+    <Compile Include="forms\frmFornecedores.Designer.cs">
+      <DependentUpon>frmFornecedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmStock.cs">
+    <Compile Include="forms\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmStock.Designer.cs">
-      <DependentUpon>frmStock.cs</DependentUpon>
+    <Compile Include="forms\frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmParamMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmParamMenu.Designer.cs">
+      <DependentUpon>frmParamMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmVeiculos.cs">
       <SubType>Form</SubType>
@@ -116,27 +128,42 @@
     <Compile Include="forms\frmVeiculos.Designer.cs">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="forms\frmServices.cs">
+    <Compile Include="forms_auxiliares\frmChooseCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmServices.Designer.cs">
-      <DependentUpon>frmServices.cs</DependentUpon>
+    <Compile Include="forms_auxiliares\frmChooseCliente.Designer.cs">
+      <DependentUpon>frmChooseCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="forms\frmFuncionario.resx">
+      <DependentUpon>frmFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSubmenu.resx">
+      <DependentUpon>frmSubmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSeccao.resx">
+      <DependentUpon>frmSeccao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmFornecedores.resx">
+      <DependentUpon>frmFornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmVeiculos.resx">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms_auxiliares\frmChooseCliente.resx">
+      <DependentUpon>frmChooseCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmServices.resx">
-      <DependentUpon>frmServices.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -33,9 +33,9 @@
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnPecas = new System.Windows.Forms.Button();
-            this.btnFornecedores = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMin = new System.Windows.Forms.Button();
+            this.btnParam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnServices
@@ -46,7 +46,7 @@
             this.btnServices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServices.Image = ((System.Drawing.Image)(resources.GetObject("btnServices.Image")));
             this.btnServices.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnServices.Location = new System.Drawing.Point(84, 134);
+            this.btnServices.Location = new System.Drawing.Point(75, 83);
             this.btnServices.Name = "btnServices";
             this.btnServices.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnServices.Size = new System.Drawing.Size(241, 62);
@@ -65,7 +65,7 @@
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClientes.Location = new System.Drawing.Point(84, 66);
+            this.btnClientes.Location = new System.Drawing.Point(75, 287);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnClientes.Size = new System.Drawing.Size(241, 62);
@@ -84,7 +84,7 @@
             this.btnVeiculos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVeiculos.Image = ((System.Drawing.Image)(resources.GetObject("btnVeiculos.Image")));
             this.btnVeiculos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVeiculos.Location = new System.Drawing.Point(84, 338);
+            this.btnVeiculos.Location = new System.Drawing.Point(75, 219);
             this.btnVeiculos.Name = "btnVeiculos";
             this.btnVeiculos.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnVeiculos.Size = new System.Drawing.Size(241, 62);
@@ -103,7 +103,7 @@
             this.btnPecas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPecas.Image = ((System.Drawing.Image)(resources.GetObject("btnPecas.Image")));
             this.btnPecas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPecas.Location = new System.Drawing.Point(84, 202);
+            this.btnPecas.Location = new System.Drawing.Point(75, 151);
             this.btnPecas.Name = "btnPecas";
             this.btnPecas.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnPecas.Size = new System.Drawing.Size(241, 62);
@@ -114,25 +114,6 @@
             this.btnPecas.UseVisualStyleBackColor = false;
             this.btnPecas.Click += new System.EventHandler(this.btnPecas_Click);
             // 
-            // btnFornecedores
-            // 
-            this.btnFornecedores.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnFornecedores.FlatAppearance.BorderSize = 0;
-            this.btnFornecedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFornecedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFornecedores.Image = ((System.Drawing.Image)(resources.GetObject("btnFornecedores.Image")));
-            this.btnFornecedores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFornecedores.Location = new System.Drawing.Point(84, 270);
-            this.btnFornecedores.Name = "btnFornecedores";
-            this.btnFornecedores.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btnFornecedores.Size = new System.Drawing.Size(241, 62);
-            this.btnFornecedores.TabIndex = 4;
-            this.btnFornecedores.Text = "Fornecedores";
-            this.btnFornecedores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFornecedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnFornecedores.UseVisualStyleBackColor = false;
-            this.btnFornecedores.Click += new System.EventHandler(this.btnFornecedores_Click);
-            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -141,7 +122,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(84, 406);
+            this.btnExit.Location = new System.Drawing.Point(75, 423);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnExit.Size = new System.Drawing.Size(241, 62);
@@ -167,6 +148,25 @@
             this.btnMin.UseVisualStyleBackColor = false;
             this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
+            // btnParam
+            // 
+            this.btnParam.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnParam.FlatAppearance.BorderSize = 0;
+            this.btnParam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnParam.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnParam.Image = ((System.Drawing.Image)(resources.GetObject("btnParam.Image")));
+            this.btnParam.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnParam.Location = new System.Drawing.Point(75, 355);
+            this.btnParam.Name = "btnParam";
+            this.btnParam.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnParam.Size = new System.Drawing.Size(241, 62);
+            this.btnParam.TabIndex = 7;
+            this.btnParam.Text = "Parametrização";
+            this.btnParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnParam.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnParam.UseVisualStyleBackColor = false;
+            this.btnParam.Click += new System.EventHandler(this.btnParam_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,9 +174,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 575);
+            this.Controls.Add(this.btnParam);
             this.Controls.Add(this.btnMin);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnFornecedores);
             this.Controls.Add(this.btnPecas);
             this.Controls.Add(this.btnVeiculos);
             this.Controls.Add(this.btnClientes);
@@ -199,9 +199,9 @@
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnVeiculos;
         private System.Windows.Forms.Button btnPecas;
-        private System.Windows.Forms.Button btnFornecedores;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnMin;
+        private System.Windows.Forms.Button btnParam;
     }
 }
 
