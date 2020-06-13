@@ -86,6 +86,12 @@
     <Compile Include="forms\frmFuncionario.Designer.cs">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmTService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTService.Designer.cs">
+      <DependentUpon>frmTService.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmSubmenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmFuncionario.resx">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTService.resx">
+      <DependentUpon>frmTService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSubmenu.resx">
       <DependentUpon>frmSubmenu.cs</DependentUpon>

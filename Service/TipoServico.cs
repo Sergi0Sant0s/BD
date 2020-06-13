@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Service
 {
-    public class Seccao
+    public class TipoServico
     {
-        public static DataTable GetAllSeccoes()
+        public static DataTable GetAllServicos()
         {
             try
             {
@@ -19,7 +19,7 @@ namespace Service
 
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
-                    string cmdSeleciona = "select id, nome from seccao order by id";
+                    string cmdSeleciona = "select id, descricao from tipo_servico order by id";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {
@@ -45,7 +45,7 @@ namespace Service
 
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
-                    string cmdSeleciona = "SELECT last_value+1 FROM seccao_id_seq;";
+                    string cmdSeleciona = "SELECT last_value+1 FROM tipo_servico_id_seq;";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {
@@ -60,11 +60,11 @@ namespace Service
             }
         }
 
-        public static bool NewSeccao(string nome)
+        public static bool NewServico(string nome)
         {
             try
             {
-                string query = string.Format("insert into seccao(nome) values('{0}');", nome);
+                string query = string.Format("insert into tipo_servico(descricao) values('{0}');", nome);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -77,11 +77,11 @@ namespace Service
             }
         }
 
-        public static bool UpdateSeccao(int id, string nome)
+        public static bool UpdateServico(int id, string nome)
         {
             try
             {
-                string query = string.Format("UPDATE seccao SET nome = '{0}' where id = {1};", nome, id);
+                string query = string.Format("UPDATE tipo_servico SET descricao = '{0}' where id = {1};", nome, id);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -94,11 +94,11 @@ namespace Service
             }
         }
 
-        public static bool DeleteSeccao(int id)
+        public static bool DeleteTServico(int id)
         {
             try
             {
-                string query = string.Format("Delete from seccao where id = {0});", id);
+                string query = string.Format("Delete from tipo_servico where id = {0});", id);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);

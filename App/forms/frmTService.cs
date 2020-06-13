@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace App.forms
 {
-    public partial class frmFornecedores : Form
+    public partial class frmTService : Form
     {
-        public frmFornecedores()
+        public frmTService()
         {
             InitializeComponent();
         }
@@ -60,6 +60,10 @@ namespace App.forms
 
         /* END FORM */
 
+        private void ribbonButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Funciona");
+        }
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -73,12 +77,9 @@ namespace App.forms
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            tbId.Text = Fornecedores.GetNewId().ToString();
-            tbId.Enabled = true;
+            tbId.Text = TipoServico.GetNewId().ToString();
             tbNome.Text = string.Empty;
-            tbTelefone.Text = string.Empty;
-            tbEmail.Text = string.Empty;
-            tbMorada.Text = string.Empty;
+            tbNome.Enabled = true;
             //
             btnEdit.Visible = false;
             btnDelete.Visible = false;
@@ -99,17 +100,17 @@ namespace App.forms
         private void btnDelete_Click(object sender, EventArgs e)
         {
             /*Obter o veiculo*/
-            if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Fornecedor: {0}\n\nTem certeza que deseja eliminar o veiculo com a matricula {0}?", dgvList.SelectedRows[0].Cells[1].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Tipo de Serviço: {0}\n\nTem certeza que deseja eliminar este tipo de serviço?", dgvList.SelectedRows[0].Cells[1].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 /*Eliminar o veiculo*/
 
-                if(Fornecedores.DeleteFornecedor(Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value.ToString())))
+                if(TipoServico.DeleteTServico(Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value.ToString())))
                 {
-                    MessageBox.Show("Fornecedor eliminado com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tipo de serviço eliminado com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateGrid();
                 }
                 else
-                    MessageBox.Show("Não foi possivel eliminadar o fornecedor.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Não foi possivel eliminar este tipo de serviço.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }                
         }
 
@@ -127,7 +128,7 @@ namespace App.forms
             }
             else
             {
-                MessageBox.Show("Não existem fornecedores a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Não existem tipos de serviços a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
                 
         }
@@ -145,23 +146,35 @@ namespace App.forms
 
         private void Edit()
         {
-            if (dgvList.SelectedRows.Count != 0)
+            if(tbDefault.SelectedIndex == 0)
             {
-                tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
-                tbNome.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
-                tbTelefone.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
-                tbEmail.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
-                tbMorada.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
-                //
+                if (dgvList.SelectedRows.Count != 0)
+                {
+                    var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
+                    tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
+                    tbNome.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
+                    //
+                    btnEdit.Visible = false;
+                    btnDelete.Visible = false;
+                    btnNew.Visible = false;
+                    btnClose.Visible = false;
+                    btnCancelar.Visible = true;
+                    btnGuardar.Visible = true;
+                    //
+                    tbDefault.SelectedIndex = 1;
+                }
+            }
+            else
+            {
+                tbNome.Enabled = true;
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;
                 btnNew.Visible = false;
                 btnClose.Visible = false;
                 btnCancelar.Visible = true;
                 btnGuardar.Visible = true;
-                //
-                tbDefault.SelectedIndex = 1;
             }
+            
         }
 
         private void tbDefault_Deselecting(object sender, TabControlCancelEventArgs e)
@@ -187,25 +200,20 @@ namespace App.forms
 
             if (!check)
             {
-                if (Fornecedores.NewFornecedor(tbNome.Text, tbTelefone.Text, tbEmail.Text, tbMorada.Text))
-                    MessageBox.Show("Fornecedor adicionado com sucesso.");
+                if (Seccao.NewSeccao(tbNome.Text))
+                    MessageBox.Show("Cliente adicionado com sucesso.");
                 else
-                    MessageBox.Show("Não foi possivel adicionar o novo fornecedor.");
+                    MessageBox.Show("Não foi possivel adicionar o novo cliente.");
             }
             else if (id != -1)
             {
-                if (Fornecedores.UpdateFornecedor(id, tbNome.Text, tbTelefone.Text, tbEmail.Text, tbMorada.Text))
-                    MessageBox.Show("Fornecedor atualizado com sucesso.");
+                if (Seccao.UpdateSeccao(id, tbNome.Text))
+                    MessageBox.Show("Cliente atualizado com sucesso.");
                 else
-                    MessageBox.Show("Não foi possivel atualizar o fornecedor.");
+                    MessageBox.Show("Não foi possivel atualizar o cliente.");
             }
 
-            //TextBox's
             tbNome.Enabled = false;
-            tbTelefone.Enabled = false;
-            tbMorada.Enabled = false;
-            tbEmail.Enabled = false;
-            //Buttons
             btnEdit.Visible = true;
             btnDelete.Visible = true;
             btnNew.Visible = true;
@@ -219,51 +227,26 @@ namespace App.forms
         {
             if(tbDefault.SelectedIndex == 1 && btnEdit.Visible)
             {
+                var row = dgvList.Rows[dgvList.SelectedRows[0].Index].Cells;
                 tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
                 tbNome.Text = dgvList.SelectedRows[0].Cells[1].Value.ToString();
-                tbTelefone.Text = dgvList.SelectedRows[0].Cells[2].Value.ToString();
-                tbEmail.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
-                tbMorada.Text = dgvList.SelectedRows[0].Cells[4].Value.ToString();
-                tbId.Enabled = false;
                 //
             }
             
             if(!btnEdit.Visible || !btnNew.Visible)
             {
                 tbNome.Enabled = true;
-                tbTelefone.Enabled = true;
-                tbEmail.Enabled = true;
-                tbMorada.Enabled = true;
             }
             else
             {
                 tbNome.Enabled = false;
-                tbTelefone.Enabled = false;
-                tbEmail.Enabled = false;
-                tbMorada.Enabled = false;
             }
         }
 
+
         private void UpdateGrid()
         {
-            dgvList.DataSource = Fornecedores.GetAllFornecedores();
-        }
-
-        private void tbNomeSearch_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbMoradaSearch_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void Filter()
-        {
-            var check = Fornecedores.Filter(tbNomeSearch.Text,tbMoradaSearch.Text);
-            if (check != null)
-                dgvList.DataSource = check;
+            dgvList.DataSource =  TipoServico.GetAllServicos();
         }
     }
 }

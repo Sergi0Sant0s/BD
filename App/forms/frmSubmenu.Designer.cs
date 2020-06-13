@@ -34,6 +34,7 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.btnFornecedores = new System.Windows.Forms.Button();
             this.btnSeccao = new System.Windows.Forms.Button();
+            this.btnTService = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClientes
@@ -127,6 +128,25 @@
             this.btnSeccao.UseVisualStyleBackColor = false;
             this.btnSeccao.Click += new System.EventHandler(this.btnSeccao_Click);
             // 
+            // btnTService
+            // 
+            this.btnTService.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnTService.FlatAppearance.BorderSize = 0;
+            this.btnTService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTService.Image = ((System.Drawing.Image)(resources.GetObject("btnTService.Image")));
+            this.btnTService.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTService.Location = new System.Drawing.Point(75, 252);
+            this.btnTService.Name = "btnTService";
+            this.btnTService.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnTService.Size = new System.Drawing.Size(241, 62);
+            this.btnTService.TabIndex = 9;
+            this.btnTService.Text = "Tipo de Serviço";
+            this.btnTService.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTService.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnTService.UseVisualStyleBackColor = false;
+            this.btnTService.Click += new System.EventHandler(this.btnTService_Click);
+            // 
             // frmSubmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,6 +154,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 575);
+            this.Controls.Add(this.btnTService);
             this.Controls.Add(this.btnSeccao);
             this.Controls.Add(this.btnFornecedores);
             this.Controls.Add(this.btnMin);
@@ -145,7 +166,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Oficina";
-            this.Load += new System.EventHandler(this.Menu_Load);
+            this.Load += new System.EventHandler(this.frmSubmenu_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Menu_MouseDown);
             this.ResumeLayout(false);
 
@@ -157,6 +178,7 @@
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Button btnFornecedores;
         private System.Windows.Forms.Button btnSeccao;
+        private System.Windows.Forms.Button btnTService;
     }
 }
 

@@ -19,7 +19,7 @@ namespace App
             InitializeComponent();
         }
 
-        private void Menu_Load(object sender, EventArgs e)
+        private void frmSubmenu_Load(object sender, EventArgs e)
         {
             Color colDefault = btnClientes.BackColor;
             int trans = 175;
@@ -27,7 +27,6 @@ namespace App
             btnExit.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnSeccao.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnFornecedores.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
-
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -80,6 +79,14 @@ namespace App
             this.Visible = false;
             frmFornecedores forn = new frmFornecedores();
             forn.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnTService_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmTService tService = new frmTService();
+            tService.ShowDialog();
             this.Visible = true;
         }
     }

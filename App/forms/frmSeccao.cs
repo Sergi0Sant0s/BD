@@ -60,11 +60,6 @@ namespace App.forms
 
         /* END FORM */
 
-        private void ribbonButton1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Funciona");
-        }
-
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -100,17 +95,17 @@ namespace App.forms
         private void btnDelete_Click(object sender, EventArgs e)
         {
             /*Obter o veiculo*/
-            if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Tem certeza que deseja eliminar o veiculo com a matricula {0}?", dgvList.SelectedRows[0].Cells[0].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if(dgvList.SelectedRows.Count != 0 && MessageBox.Show(string.Format("Secção: {0}\n\nTem certeza que deseja eliminar esta secção?", dgvList.SelectedRows[0].Cells[1].Value.ToString()),"Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 /*Eliminar o veiculo*/
 
                 if(Veiculos.DeleteVeiculo(dgvList.SelectedRows[0].Cells[0].Value.ToString()))
                 {
-                    MessageBox.Show("Veiculo Eliminado.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Secção eliminada com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateGrid();
                 }
                 else
-                    MessageBox.Show("Não foi possivel eliminadar o veiculo.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Não foi possivel eliminar esta secção.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }                
         }
 
@@ -128,7 +123,7 @@ namespace App.forms
             }
             else
             {
-                MessageBox.Show("Não existem veiculos a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Não existem secções a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
                 
         }
