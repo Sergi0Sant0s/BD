@@ -147,39 +147,6 @@ namespace App.forms
                 UpdateGrid();
         }
 
-        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbModelo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbMatricula_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbClient_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void Filter()
-        {
-
-            //var check = Veiculos.Filter(tbTelemovelSearch.Text, marca, modelo, tbNomeSearch.Text, year);
-            //if (check != null)
-            //dgvList.DataSource = check;
-        }
-
         private void dgvList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             Edit();
@@ -305,6 +272,29 @@ namespace App.forms
         private void UpdateGrid()
         {
             dgvList.DataSource = Clients.GetAllClientes();
+        }
+
+        private void Filter()
+        {
+
+            var check = Clients.Filter(tbNomeSearch.Text, tbTelemovelSearch.Text, tbMoradaSearch.Text);
+            if (check != null)
+                dgvList.DataSource = check;
+        }
+
+        private void tbNomeSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbTelemovelSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbMoradaSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
         }
     }
 }

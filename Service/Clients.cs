@@ -142,14 +142,15 @@ namespace Service
             }
         }
 
-        public static DataTable Filter(string nome, string morada)
+        public static DataTable Filter(string nome, string telemovel, string morada)
         {
             try
             {
                 StringBuilder build = new StringBuilder();
                 build.Append("select * from cliente where ");
-                if (nome != string.Empty) build.Append(string.Format("UPPER(nome) LIKE UPPER('{0}%') AND ", nome));
-                if (morada != string.Empty) build.Append(string.Format("UPPER(morada) LIKE UPPER('{0}%') AND ", morada));
+                if (nome != string.Empty) build.Append(string.Format("UPPER(nome) LIKE UPPER('%{0}%') AND ", nome));
+                if (telemovel != string.Empty) build.Append(string.Format("UPPER(telemovel) LIKE UPPER('{0}%') AND ", telemovel));
+                if (morada != string.Empty) build.Append(string.Format("UPPER(morada) LIKE UPPER('%{0}%') AND ", morada));
                 if (build.ToString().Substring(build.Length - 4) == "AND ")
                     build.Length -= 4;
                 else if (build.ToString().Substring(build.Length - 6) == "where ")

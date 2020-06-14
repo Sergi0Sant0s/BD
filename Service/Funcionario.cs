@@ -19,7 +19,7 @@ namespace Service
 
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
-                    string cmdSeleciona = "select cli.id,cli.nome,cli.telemovel,cli.email,cli.morada,sec.nome as seccao from cliente cli "
+                    string cmdSeleciona = "select cli.id,cli.nome,cli.telemovel,cli.email,cli.morada,cli.created_at,sec.nome as seccao from cliente cli "
                     + "inner join funcionario fun on cli.id = fun.id "
                     + "inner join seccao sec on fun.id_seccao = sec.id order by cli.id";
 
@@ -148,6 +148,44 @@ namespace Service
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public static DataTable Filter(string nome, string telemovel, string morada, string seccao)
+        {
+            try
+            {
+                StringBuilder build = new StringBuilder();
+                build.Append("select cli.id,cli.nome,cli.telemovel,cli.email,cli.morada,cli.created_at,sec.nome as seccao from cliente cli ");
+                build.Append("inner join funcionario func on cli.id = func.id ");
+                build.Append("inner join seccao sec on func.id_seccao = sec.id where ");
+                if (nome != string.Empty) build.Append(string.Format("UPPER(cli.nome) LIKE UPPER('%{0}%') AND ", nome));
+                if (telemovel != string.Empty) build.Append(string.Format("UPPER(cli.telemovel) LIKE UPPER('{0}%') AND ", telemovel));
+                if (morada != string.Empty) build.Append(string.Format("UPPER(cli.morada) LIKE UPPER('%{0}%') AND ", morada));
+                if (seccao != string.Empty) build.Append(string.Format("sec.nome = '{0}' ", seccao));
+                if (build.ToString().Substring(build.Length - 4) == "AND ")
+                    build.Length -= 4;
+                else if (build.ToString().Substring(build.Length - 6) == "where ")
+                    build.Length -= 6;
+                build.Append("order by cli.id;");
+                DataTable dt = new DataTable();
+
+                using (NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs))
+                {
+
+                    // abre a conexão com o PgSQL e define a instrução SQL
+                    pgsqlConnection.Open();
+
+                    using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(build.ToString(), pgsqlConnection))
+                    {
+                        Adpt.Fill(dt);
+                    }
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

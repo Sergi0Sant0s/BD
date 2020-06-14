@@ -187,7 +187,9 @@ namespace Service
                     build.Length -= 4;
                 else if(build.ToString().Substring(build.Length - 6) == "where ")
                     build.Length -= 6;
-                build.Append(";");
+                build.Append("order by id;");
+                //
+
                 DataTable dt = new DataTable();
 
                 using (NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs))

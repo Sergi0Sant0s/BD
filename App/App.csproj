@@ -122,12 +122,6 @@
     <Compile Include="forms\frmCliente.Designer.cs">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmParamMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmParamMenu.Designer.cs">
-      <DependentUpon>frmParamMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\frmVeiculos.cs">
       <SubType>Form</SubType>
     </Compile>

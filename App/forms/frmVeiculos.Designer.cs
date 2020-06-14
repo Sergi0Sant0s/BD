@@ -31,11 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeiculos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeiculos));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabList = new System.Windows.Forms.TabPage();
             this.cbYear = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,13 +66,16 @@
             this.cbModelo = new System.Windows.Forms.ComboBox();
             this.cbBrand = new System.Windows.Forms.ComboBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
-            this.tbDefault = new System.Windows.Forms.TabControl();
-            this.btnMinimize = new System.Windows.Forms.Button();
             this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbDefault = new System.Windows.Forms.TabControl();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabProcess.SuspendLayout();
             this.tabList.SuspendLayout();
@@ -92,7 +94,7 @@
             this.btnGuardar,
             this.btnCancelar,
             this.btnClose});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 37);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(933, 37);
             this.menuStrip1.TabIndex = 2;
@@ -159,7 +161,7 @@
             this.tabProcess.Controls.Add(this.label2);
             this.tabProcess.Location = new System.Drawing.Point(4, 25);
             this.tabProcess.Name = "tabProcess";
-            this.tabProcess.Size = new System.Drawing.Size(925, 388);
+            this.tabProcess.Size = new System.Drawing.Size(925, 351);
             this.tabProcess.TabIndex = 1;
             this.tabProcess.Text = "Processo";
             // 
@@ -258,7 +260,6 @@
             // 
             this.tabList.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tabList.Controls.Add(this.cbYear);
-            this.tabList.Controls.Add(this.label10);
             this.tabList.Controls.Add(this.label9);
             this.tabList.Controls.Add(this.label8);
             this.tabList.Controls.Add(this.label7);
@@ -271,7 +272,7 @@
             this.tabList.Location = new System.Drawing.Point(4, 25);
             this.tabList.Name = "tabList";
             this.tabList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabList.Size = new System.Drawing.Size(925, 388);
+            this.tabList.Size = new System.Drawing.Size(925, 351);
             this.tabList.TabIndex = 0;
             this.tabList.Text = "Lista";
             // 
@@ -285,15 +286,6 @@
             this.cbYear.Size = new System.Drawing.Size(103, 21);
             this.cbYear.TabIndex = 13;
             this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(551, 13);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(26, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Ano";
             // 
             // label9
             // 
@@ -432,37 +424,6 @@
             this.dgvList.TabIndex = 2;
             this.dgvList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseDoubleClick);
             // 
-            // tbDefault
-            // 
-            this.tbDefault.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tbDefault.Controls.Add(this.tabList);
-            this.tbDefault.Controls.Add(this.tabProcess);
-            this.tbDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDefault.Location = new System.Drawing.Point(0, 37);
-            this.tbDefault.Margin = new System.Windows.Forms.Padding(0);
-            this.tbDefault.Name = "tbDefault";
-            this.tbDefault.Padding = new System.Drawing.Point(0, 0);
-            this.tbDefault.SelectedIndex = 0;
-            this.tbDefault.Size = new System.Drawing.Size(933, 417);
-            this.tbDefault.TabIndex = 1;
-            this.tbDefault.SelectedIndexChanged += new System.EventHandler(this.tbDefault_SelectedIndexChanged);
-            this.tbDefault.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbDefault_Selected);
-            this.tbDefault.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tbDefault_Deselecting);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(892, 0);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(37, 35);
-            this.btnMinimize.TabIndex = 3;
-            this.btnMinimize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMinimize.UseVisualStyleBackColor = false;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
             // Matricula
             // 
             this.Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -514,15 +475,76 @@
             this.Cliente.Name = "Cliente";
             this.Cliente.ReadOnly = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(419, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(102, 25);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Veiculos";
+            // 
+            // tbDefault
+            // 
+            this.tbDefault.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tbDefault.Controls.Add(this.tabList);
+            this.tbDefault.Controls.Add(this.tabProcess);
+            this.tbDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbDefault.Location = new System.Drawing.Point(0, 74);
+            this.tbDefault.Margin = new System.Windows.Forms.Padding(0);
+            this.tbDefault.Name = "tbDefault";
+            this.tbDefault.Padding = new System.Drawing.Point(0, 0);
+            this.tbDefault.SelectedIndex = 0;
+            this.tbDefault.Size = new System.Drawing.Size(933, 380);
+            this.tbDefault.TabIndex = 1;
+            this.tbDefault.SelectedIndexChanged += new System.EventHandler(this.tbDefault_SelectedIndexChanged);
+            this.tbDefault.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbDefault_Selected);
+            this.tbDefault.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tbDefault_Deselecting);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+            this.btnMinimize.Location = new System.Drawing.Point(892, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(37, 35);
+            this.btnMinimize.TabIndex = 3;
+            this.btnMinimize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMinimize.UseVisualStyleBackColor = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.AutoSize = false;
+            this.menuStrip2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(933, 37);
+            this.menuStrip2.TabIndex = 4;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 23);
+            this.label11.TabIndex = 0;
+            // 
             // frmVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(933, 454);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.tbDefault);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -539,6 +561,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.tbDefault.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -582,5 +605,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Marca;
         private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.Label label11;
     }
 }

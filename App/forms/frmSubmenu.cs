@@ -27,6 +27,7 @@ namespace App
             btnExit.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnSeccao.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnFornecedores.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
+            btnTService.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;

@@ -134,7 +134,7 @@ namespace App.forms
             }
             else
             {
-                MessageBox.Show("Não existem veiculos a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Não existem funcionarios a serem apresentados.\nEsta janela vai ser fechada.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
                 
         }
@@ -143,39 +143,6 @@ namespace App.forms
         {
             if (!btnGuardar.Visible && !btnCancelar.Visible && tbDefault.SelectedIndex == 0)
                 UpdateGrid();
-        }
-
-        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbModelo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbMatricula_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void tbClient_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
-        private void Filter()
-        {
-            
-            //var check = Veiculos.Filter(tbTelemovelSearch.Text, marca, modelo, tbNomeSearch.Text, year);
-            //if (check != null)
-                //dgvList.DataSource = check;
         }
 
         private void dgvList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -318,6 +285,34 @@ namespace App.forms
                 cbSeccaoSearch.Items.Add(row[1]);
             cbSeccaoSearch.SelectedIndex = 0;
 
+        }
+
+        private void Filter()
+        {
+            string seccao = cbSeccaoSearch.SelectedIndex == 0 ? "" : this.cbSeccaoSearch.GetItemText(this.cbSeccaoSearch.SelectedItem);
+            var check = Funcionario.Filter(tbNomeSearch.Text, tbTelemovelSearch.Text, tbMoradaSearch.Text, seccao);
+            if (check != null)
+                dgvList.DataSource = check;
+        }
+
+        private void tbNomeSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbTelemovelSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbMoradaSearch_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbSeccaoSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filter();
         }
     }
 }

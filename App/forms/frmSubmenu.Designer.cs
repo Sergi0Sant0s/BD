@@ -45,7 +45,7 @@
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClientes.Location = new System.Drawing.Point(75, 48);
+            this.btnClientes.Location = new System.Drawing.Point(72, 126);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnClientes.Size = new System.Drawing.Size(241, 62);
@@ -64,7 +64,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(75, 456);
+            this.btnExit.Location = new System.Drawing.Point(72, 398);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnExit.Size = new System.Drawing.Size(241, 62);
@@ -98,7 +98,7 @@
             this.btnFornecedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFornecedores.Image = ((System.Drawing.Image)(resources.GetObject("btnFornecedores.Image")));
             this.btnFornecedores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFornecedores.Location = new System.Drawing.Point(75, 116);
+            this.btnFornecedores.Location = new System.Drawing.Point(72, 194);
             this.btnFornecedores.Name = "btnFornecedores";
             this.btnFornecedores.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnFornecedores.Size = new System.Drawing.Size(241, 62);
@@ -117,7 +117,7 @@
             this.btnSeccao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeccao.Image = ((System.Drawing.Image)(resources.GetObject("btnSeccao.Image")));
             this.btnSeccao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeccao.Location = new System.Drawing.Point(75, 184);
+            this.btnSeccao.Location = new System.Drawing.Point(72, 262);
             this.btnSeccao.Name = "btnSeccao";
             this.btnSeccao.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnSeccao.Size = new System.Drawing.Size(241, 62);
@@ -136,7 +136,7 @@
             this.btnTService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTService.Image = ((System.Drawing.Image)(resources.GetObject("btnTService.Image")));
             this.btnTService.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTService.Location = new System.Drawing.Point(75, 252);
+            this.btnTService.Location = new System.Drawing.Point(72, 330);
             this.btnTService.Name = "btnTService";
             this.btnTService.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnTService.Size = new System.Drawing.Size(241, 62);
