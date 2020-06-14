@@ -86,6 +86,12 @@
     <Compile Include="forms\frmFuncionario.Designer.cs">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmStock.Designer.cs">
+      <DependentUpon>frmStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmTService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,11 +128,23 @@
     <Compile Include="forms\frmCliente.Designer.cs">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmPeca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPeca.Designer.cs">
+      <DependentUpon>frmPeca.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmVeiculos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmVeiculos.Designer.cs">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms_auxiliares\frmChooseFornecedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms_auxiliares\frmChooseFornecedor.Designer.cs">
+      <DependentUpon>frmChooseFornecedor.cs</DependentUpon>
     </Compile>
     <Compile Include="forms_auxiliares\frmChooseCliente.cs">
       <SubType>Form</SubType>
@@ -138,6 +156,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmFuncionario.resx">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmStock.resx">
+      <DependentUpon>frmStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTService.resx">
       <DependentUpon>frmTService.cs</DependentUpon>
@@ -157,8 +178,14 @@
     <EmbeddedResource Include="forms\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPeca.resx">
+      <DependentUpon>frmPeca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmVeiculos.resx">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms_auxiliares\frmChooseFornecedor.resx">
+      <DependentUpon>frmChooseFornecedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms_auxiliares\frmChooseCliente.resx">
       <DependentUpon>frmChooseCliente.cs</DependentUpon>

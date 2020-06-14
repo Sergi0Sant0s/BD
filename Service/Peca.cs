@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Service
 {
-    public class Veiculos
+    public class Peca
     {
-        public static DataTable GetAllVeiculos()
+        public static DataTable GetAllPecas()
         {
             try
             {
@@ -21,16 +20,13 @@ namespace Service
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
                     string cmdSeleciona =
-                    "select matricula , marca , modelo , ano , cli.Nome as Cliente from veiculo " +
-                    "inner join Cliente cli on veiculo.cliente_id = cli.id order by matricula;";
+                    "select * from peca order by id";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {
                         Adpt.Fill(dt);
                     }
-                    pgsqlConnection.Close();
                 }
-               
 
                 return dt;
             }
@@ -52,7 +48,7 @@ namespace Service
 
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
-                    string cmdSeleciona = "select distinct marca from veiculo";
+                    string cmdSeleciona = "select distinct marca from peca";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {
@@ -81,7 +77,7 @@ namespace Service
 
                     // abre a conexão com o PgSQL e define a instrução SQL
                     pgsqlConnection.Open();
-                    string cmdSeleciona = "select distinct modelo from veiculo";
+                    string cmdSeleciona = "select distinct modelo from peca";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
                     {
@@ -99,51 +95,11 @@ namespace Service
             }
         }
 
-        public static DataTable GetAllYears()
+        public static bool DeletePeca(int id)
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("ano");
-                dt.Columns[0].DataType = typeof(string);
-
-                using (NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs))
-                {
-
-                    // abre a conexão com o PgSQL e define a instrução SQL
-                    pgsqlConnection.Open();
-                    string cmdSeleciona = "select distinct ano from veiculo";
-
-                    using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
-                    {
-                        Adpt.Fill(dt);
-                    }
-                }
-                DataTable dtAux = new DataTable();
-                dtAux.Columns.Add("ano");
-                dtAux.Columns[0].DataType = typeof(string);
-                DataRow toInsert = dtAux.NewRow();
-                toInsert["ano"] = "Todos";
-                dtAux.Rows.Add(toInsert);
-                foreach (DataRow row in dt.Rows)
-                {
-                    DataRow aux = dtAux.NewRow();
-                    aux["ano"] = row["ano"].ToString();
-                    dtAux.Rows.Add(aux);
-                }
-                return dtAux;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static bool DeleteVeiculo(string matricula)
-        {
-            try
-            {
-                string query = string.Format("Delete from veiculo where matricula = UPPER('{0}');",matricula);
+                string query = string.Format("Delete from peca where id = {0};", id);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -156,11 +112,11 @@ namespace Service
             }
         }
 
-        public static bool UpdateVeiculo(string matricula, string marca, string modelo, int cliente, string ano)
+        public static bool NewPeca(string nome, string marca, string modelo, string descricao)
         {
             try
             {
-                string query = string.Format("Update veiculo set marca = '{1}', modelo = '{2}', ano = '{3}', cliente = {4} where matricula = UPPER('{0}');", matricula,marca,modelo,ano,cliente);
+                string query = string.Format("insert into peca(nome, marca, modelo, descricao) values('{0}', '{1}', '{2}', '{3}');", nome, marca,modelo,descricao);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -173,21 +129,35 @@ namespace Service
             }
         }
 
-        public static DataTable Filter(string matricula, string marca, string modelo, string cliente, string ano)
+        public static bool UpdatePeca(int id,string nome, string marca, string modelo, string descricao)
+        {
+            try
+            {
+                string query = string.Format("Update peca set nome = '{1}', marca = '{2}', modelo = '{3}', descricao = '{4}' where id = {0};", id, nome, marca, modelo, descricao);
+                NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
+                pgsqlConnection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                return reader.RecordsAffected != 0 ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static DataTable Filter(string nome, string marca, string modelo)
         {
             try
             {
                 StringBuilder build = new StringBuilder();
-                build.Append("select matricula , marca , modelo , ano , cli.Nome as Cliente from veiculo ");
-                build.Append("inner join Cliente cli on veiculo.cliente_id = cli.id where ");
-                if (matricula != string.Empty) build.Append(string.Format("matricula LIKE UPPER('{0}%') AND ", matricula));
+                build.Append("select * from peca where ");
+                if (nome != string.Empty) build.Append(string.Format("UPPER(nome) LIKE UPPER('%{0}%') AND ", nome));
                 if (marca != string.Empty) build.Append(string.Format("marca = '{0}' AND ", marca));
                 if (modelo != string.Empty) build.Append(string.Format("modelo = '{0}' AND ", modelo));
-                if (cliente != string.Empty) build.Append(string.Format("cli.nome LIKE '{0}%' AND ", cliente));
-                if (ano != string.Empty) build.Append(string.Format("ano = {0}", Convert.ToInt32(ano)));
                 if (build.ToString().Substring(build.Length - 4) == "AND ")
                     build.Length -= 4;
-                else if(build.ToString().Substring(build.Length - 6) == "where ")
+                else if (build.ToString().Substring(build.Length - 6) == "where ")
                     build.Length -= 6;
                 build.Append("order by id;");
                 //
@@ -210,6 +180,32 @@ namespace Service
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public static DataRow GetPecaById(int id)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                using (NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs))
+                {
+
+                    // abre a conexão com o PgSQL e define a instrução SQL
+                    pgsqlConnection.Open();
+                    string cmdSeleciona = string.Format("select * from peca where id = {0};",id);
+
+                    using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
+                    {
+                        Adpt.Fill(dt);
+                    }
+                }
+                return dt.Rows[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

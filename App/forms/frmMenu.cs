@@ -78,7 +78,8 @@ namespace App
         private void btnPecas_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-
+            frmPeca pecas = new frmPeca();
+            pecas.ShowDialog();
             this.Visible = true;
         }
 
