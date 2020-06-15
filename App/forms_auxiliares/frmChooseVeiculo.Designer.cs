@@ -44,6 +44,8 @@
             this.btnSelecionar = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.tbCliente = new System.Windows.Forms.TextBox();
+            this.tbMatricula = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -218,12 +220,31 @@
             this.tbCliente.TabIndex = 7;
             this.tbCliente.TextChanged += new System.EventHandler(this.tbCliente_TextChanged);
             // 
+            // tbMatricula
+            // 
+            this.tbMatricula.Location = new System.Drawing.Point(380, 4);
+            this.tbMatricula.Name = "tbMatricula";
+            this.tbMatricula.Size = new System.Drawing.Size(107, 20);
+            this.tbMatricula.TabIndex = 9;
+            this.tbMatricula.TextChanged += new System.EventHandler(this.tbMatricula_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(324, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Matricula";
+            // 
             // frmChooseVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(749, 324);
+            this.Controls.Add(this.tbMatricula);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbCliente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvList);
@@ -254,5 +275,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbCliente;
+        private System.Windows.Forms.TextBox tbMatricula;
+        private System.Windows.Forms.Label label2;
     }
 }

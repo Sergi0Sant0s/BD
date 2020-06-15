@@ -70,7 +70,7 @@ namespace Service
         {
             try
             {
-                string query = string.Format("insert into servico(id_tiposervico, id_funcionario, matricula, descricao, id_estado, created_at) values({0},{1},'{2}','{3}',{4},{5});", tservice,funcionario,matricula,descricao,estadoId, string.Format("{0:dd/MM/yyyy}", created));
+                string query = string.Format("insert into servico(id_tiposervico, id_funcionario, matricula, descricao, id_estado, created_at) values({0},{1},'{2}','{3}',{4},'{5}');", tservice,funcionario,matricula,descricao,estadoId, string.Format("{0:dd/MM/yyyy}", created));
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -83,11 +83,11 @@ namespace Service
             }
         }
 
-        public static bool UpdateServico(int id, string nome)
+        public static bool UpdateServico(int id, int idTService, int idTFunc,string matricula, string dAvaria)
         {
             try
             {
-                string query = string.Format("UPDATE tipo_servico SET descricao = '{0}' where id = {1};", nome, id);
+                string query = string.Format("UPDATE servico SET id_tiposervico = {0},id_funcionario = {1},matricula = '{2}', descricao = '{3}' where id = {4};", idTService,idTFunc,matricula,dAvaria, id);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -117,11 +117,11 @@ namespace Service
             }
         }
 
-        public static bool FinalizarServico(int id)
+        public static bool FinalizarServico(int id, string descricao_Reparacao)
         {
             try
             {
-                string query = string.Format("UPDATE servico SET data_fim = '{0}', id_estado = 3 where id = {1};", string.Format("{0:dd/MM/yyyy}", DateTime.Now), id);
+                string query = string.Format("UPDATE servico SET data_fim = '{0}', descricao_reparacao = '{1}', id_estado = 3 where id = {2};", string.Format("{0:dd/MM/yyyy}", DateTime.Now), descricao_Reparacao, id);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -139,8 +139,8 @@ namespace Service
             try
             {
                 StringBuilder build = new StringBuilder();
-                build.Append("select serv.id, tserv.nome as tservice, func.nome as funcionario, serv.matricula, descricao,descricao_reparacao, state.nome as estado, serv.data_inicio,serv.data_fim, serv.created_at from servico serv ");
-                build.Append("inner join cliente func on func.id = serv.id_funcionario ");
+                build.Append("select serv.id, tserv.nome as tservice, cli.nome as funcionario, serv.matricula, descricao,descricao_reparacao, state.nome as estado, serv.data_inicio,serv.data_fim, serv.created_at from servico serv ");
+                build.Append("inner join cliente cli on cli.id = serv.id_funcionario ");
                 build.Append("inner join tipo_servico tserv on tserv.id = serv.id_tiposervico ");
                 build.Append("inner join estado_reparacao state on state.id = serv.id_estado where ");
                 //

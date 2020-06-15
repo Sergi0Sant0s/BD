@@ -68,12 +68,24 @@ namespace App.forms
         private void btnNew_Click(object sender, EventArgs e)
         {
             //Reset Text
-            tbId.Text = Clients.GetNewId().ToString();
+            tbId.Text = Services.GetNewId().ToString();
             tbMatricula.Text = string.Empty;
-            tbCreatedAt.Text = String.Format("{0:dd/MM/yyyy}", DateTime.Now);
+            tbCreatedAt.Text = string.Empty;
+            cbFuncionario.SelectedIndex = 0;
+            cbTService.SelectedIndex = 0;
+            tbEstadoReparacao.Text = string.Empty;
+            tbDescReparacao.Text = string.Empty;
+            tbDescAvaria.Text = string.Empty;
+
             //Enable
-            tbMatricula.Enabled = true;
-            //
+            tbDescAvaria.Enabled = true;
+            cbFuncionario.Enabled = true;
+            cbTService.Enabled = true;
+            btnVeiculos.Enabled = true;
+            //Options Buttons
+            btnIService.Enabled = false;
+            btnFServico.Enabled = false;
+            btnPecas.Enabled = false;
             btnEdit.Visible = false;
             btnNew.Visible = false;
             btnClose.Visible = false;
@@ -110,6 +122,8 @@ namespace App.forms
         {
             if (dgvList.Rows.Count > 0)
             {
+                btnPecas.Enabled = true;
+                btnFinalizar.Visible = false;
                 btnEdit.Visible = true;
                 btnNew.Visible = true;
                 btnClose.Visible = true;
@@ -140,10 +154,16 @@ namespace App.forms
             {
                 if (dgvList.SelectedRows.Count != 0)
                 {
-                    tbId.Text = dgvList.SelectedRows[0].Cells[0].Value.ToString();
-                    tbMatricula.Text = dgvList.SelectedRows[0].Cells[3].Value.ToString();
-                    tbCreatedAt.Text = dgvList.SelectedRows[0].Cells[5].Value.ToString();
+                    UpdateProcess(Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value));
                     //
+                    cbFuncionario.Enabled = true;
+                    cbTService.Enabled = true;
+                    tbDescAvaria.Enabled = true;
+                    //
+                    btnVeiculos.Enabled = true;
+                    btnIService.Enabled = false;
+                    btnFServico.Enabled = false;
+                    btnPecas.Enabled = false;
                     btnEdit.Visible = false;
                     btnNew.Visible = false;
                     btnClose.Visible = false;
@@ -155,7 +175,11 @@ namespace App.forms
             }
             else
             {
-                tbMatricula.Enabled = true;
+                btnVeiculos.Enabled = true;
+                cbTService.Enabled = true;
+                cbFuncionario.Enabled = true;
+                tbDescAvaria.Enabled = true;
+                //
                 btnEdit.Visible = false;
                 btnNew.Visible = false;
                 btnClose.Visible = false;
@@ -166,7 +190,7 @@ namespace App.forms
 
         private void tbDefault_Deselecting(object sender, TabControlCancelEventArgs e)
         {
-            if (btnGuardar.Visible && btnCancelar.Visible && tbDefault.SelectedIndex == 1)
+            if (btnCancelar.Visible && tbDefault.SelectedIndex == 1 && (btnFinalizar.Visible || btnGuardar.Visible))
             {
                 e.Cancel = true;
                 MessageBox.Show("Esta no modo de edição.\nConclua o processo e volte a tentar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -175,38 +199,31 @@ namespace App.forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            bool check = false;
-            int id = -1;
+            int func = Convert.ToInt32(cbFuncionario.GetItemText(this.cbFuncionario.SelectedValue));
+            int tServ = Convert.ToInt32(cbTService.GetItemText(this.cbTService.SelectedValue));
+                      
 
-            foreach (DataGridViewRow row in dgvList.Rows)
-                if (row.Cells[0].Value.ToString().Equals(tbId.Text))
-                {
-                    check = true;
-                    id = Convert.ToInt32(row.Cells[0].Value);
-                }
-
-            if (!check)
+            if (tbId.Text.Equals(Services.GetNewId().ToString()))
             {
-                DateTime date = Convert.ToDateTime(tbCreatedAt.Text);
-                //if (Clients.NewCliente(tbNome.Text, tbTelemovel.Text, tbMatricula.Text, tbDescricao.Text, date))
-                //  MessageBox.Show("Cliente adicionado com sucesso.");
-                //else
-                //  MessageBox.Show("Não foi possivel adicionar o novo cliente.");
+                if (Services.NewServico(tServ, func, tbMatricula.Text, tbDescAvaria.Text,1, DateTime.Now))
+                  MessageBox.Show("Serviço adicionado com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                  MessageBox.Show("Não foi possivel adicionar o novo serviço.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (id != -1)
+            else
             {
-                //if (Clients.UpdateCliente(id, tbNome.Text, tbTelemovel.Text, tbMatricula.Text, tbDescricao.Text))
-                //  MessageBox.Show("Cliente atualizado com sucesso.");
-                //else
-                //  MessageBox.Show("Não foi possivel atualizar o cliente.");
+                if (Services.UpdateServico(Convert.ToInt32(tbId.Text),tServ,func,tbMatricula.Text,tbDescAvaria.Text))
+                  MessageBox.Show("Serviço atualizado com sucesso.","Resultado",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                else
+                  MessageBox.Show("Não foi possivel atualizar o serviço.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            tbMatricula.Enabled = false;
             btnEdit.Visible = true;
             btnNew.Visible = true;
             btnClose.Visible = true;
             btnCancelar.Visible = false;
             btnGuardar.Visible = false;
+            UpdateGrid();
             tbDefault.SelectedIndex = 0;
         }
 
@@ -220,11 +237,17 @@ namespace App.forms
 
             if (!btnEdit.Visible || !btnNew.Visible)
             {
-                tbMatricula.Enabled = true;
+                btnVeiculos.Enabled = true;
+                cbTService.Enabled = true;
+                cbFuncionario.Enabled = true;
+                tbDescAvaria.Enabled = true;
             }
             else
             {
-                tbMatricula.Enabled = false;
+                btnVeiculos.Enabled = false;
+                cbTService.Enabled = false;
+                cbFuncionario.Enabled = false;
+                tbDescAvaria.Enabled = false;
             }
         }
 
@@ -232,9 +255,10 @@ namespace App.forms
         {
             Serv = Services.GetAllServicos();
             dgvList.DataSource = Serv;
-
             if (dgvList.Rows.Count > 0)
             {
+                //Reset Button
+                btnPecas.Enabled = true;
                 //State
                 DataTable state = EstadoReparacao.GetAllStates();
                 DataRow rState = state.NewRow();
@@ -261,11 +285,48 @@ namespace App.forms
                 cbFuncionario.DataSource = Funcionario.GetAllFuncionarios();
                 cbFuncionarioSearch.DataSource = func;
             }
+
+            if (dgvList.SelectedRows[0].Cells[4].Value.ToString() == "Finalizado")
+            {
+                btnFServico.Enabled = false;
+                btnIService.Enabled = false;
+            }
+            //
+            if (dgvList.SelectedRows[0].Cells[4].Value.ToString() == "Em reparacao")
+                btnIService.Enabled = false;
+
+            if (dgvList.SelectedRows[0].Cells[4].Value.ToString() != "Em reparacao" && dgvList.SelectedRows[0].Cells[4].Value.ToString() != "Finalizado")
+            {
+                btnFServico.Enabled = false;
+                btnIService.Enabled = true;
+            }
+
+            if (dgvList.SelectedRows[0].Cells[4].Value.ToString() == "Em reparacao" && dgvList.SelectedRows[0].Cells[4].Value.ToString() != "Finalizado")
+            {
+                btnFServico.Enabled = true;
+                btnIService.Enabled = false;
+            }
         }
 
         private void btnFServico_Click(object sender, EventArgs e)
         {
-
+            UpdateProcess(Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value));
+            tbDefault.SelectedIndex = 1;
+            tbDescReparacao.Enabled = true;
+            btnFinalizar.Visible = true;
+            btnCancelar.Visible = true;
+            //
+            btnNew.Visible = false;
+            btnEdit.Visible = false;
+            btnNew.Visible = false;
+            btnClose.Visible = false;
+            btnGuardar.Visible = false;
+            btnFServico.Enabled = false;
+            btnVeiculos.Enabled = false;
+            cbTService.Enabled = false;
+            cbFuncionario.Enabled = false;
+            tbDescAvaria.Enabled = false;
+            btnPecas.Enabled = false;
         }
 
         private void btnPecas_Click(object sender, EventArgs e)
@@ -370,6 +431,16 @@ namespace App.forms
             var check = Services.Filter(tbMatriculaSearch.Text, tipoServico, estado, funcionario);
             if (check != null)
                 dgvList.DataSource = check;
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (Services.FinalizarServico(Convert.ToInt32(tbId.Text),tbDescReparacao.Text))
+                MessageBox.Show("Serviço finalizado com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Não foi possivel finalizar o serviço.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            btnCancelar.PerformClick();
         }
     }
 }

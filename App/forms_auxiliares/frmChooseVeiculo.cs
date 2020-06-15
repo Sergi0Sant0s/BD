@@ -53,7 +53,17 @@ namespace App.forms_auxiliares
 
         private void tbCliente_TextChanged(object sender, EventArgs e)
         {
-            dgvList.DataSource = Veiculos.Filter("", "", "", tbCliente.Text, "");
+            Filter();
+        }
+
+        private void tbMatricula_TextChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void Filter()
+        {
+            dgvList.DataSource = Veiculos.Filter(tbMatricula.Text, "", "", tbCliente.Text, "");
         }
     }
 }
