@@ -1,19 +1,8 @@
-CREATE SEQUENCE Scliente start 1 increment 1;
-CREATE SEQUENCE Sfuncionario start 1 increment 1;
-CREATE SEQUENCE Sseccao start 1 increment 1;
-CREATE SEQUENCE Sfornecedor start 1 increment 1;
-CREATE SEQUENCE Speca start 1 increment 1;
-CREATE SEQUENCE Sstock start 1 increment 1;
-CREATE SEQUENCE StipoServico start 1 increment 1;
-CREATE SEQUENCE Sservico start 1 increment 1;
-CREATE SEQUENCE Speca_servico start 1 increment 1;
-
-
 create table Cliente
 (
   id SERIAL NOT NULL,
   nome    varchar(60)  not null,
-  telemovel    int not null check(telemovel>0),
+  telemovel    varchar(60) not null,
 	email varchar(50) not null,
   morada varchar(100) not null,
   created_at DATE,
@@ -23,16 +12,23 @@ create table Cliente
 create table Seccao
 (
   id SERIAL NOT NULL,
-  nome varchar(15),
+  nome varchar(20),
   constraint seccao_pk primary key( id )
+);
+
+create table Estado_Reparacao
+(
+  id SERIAL NOT NULL,
+  nome varchar(20),
+  constraint estado_reparacao_pk primary key( id )
 );
 
 create table Funcionario
 (
   id SERIAL NOT NULL check( id > 0 ),
-  id_secçao int not null check( id_secçao >= 0 ),
+  id_seccao int not null check( id_seccao >= 0 ),
   constraint func_pk primary key( id ),
-  constraint func_fk foreign key ( id_secçao ) references Seccao (id)
+  constraint func_fk foreign key ( id_seccao ) references Seccao (id)
 );
 
 create table Veiculo
@@ -60,11 +56,9 @@ create table Peca
 (
   id SERIAL NOT NULL,
   nome varchar(20) not null,
-  modelo varchar(20) not null,
-  marca varchar(20) not null,
+marca varchar(50) not null,
+  modelo varchar(50) not null,
   descricao varchar(100) not null,
-  custo_venda float not null check(custo_venda>=0),
-  custo_compra float not null check(custo_compra>=0),
   constraint peca_pk primary key (id)
 );
 
@@ -73,31 +67,48 @@ create table Stock(
 	id_peca int not null check(id_peca>0),
 	quantidade int not null check(quantidade > 0),
 	id_fornecedor int not null check(id_fornecedor>0),
+	custo_venda float not null check(custo_venda>=0),
+	custo_compra float not null check(custo_compra>=0),
 	constraint stock_pk primary key( id ),
 	constraint stock_fk foreign key (id_peca) references Peca (id),
 	constraint stock_fk2 foreign key (id_fornecedor) references Fornecedor(id)
 );
 
+create table Stock_History(
+	id SERIAL NOT NULL,
+	id_peca int not null check(id_peca>0),
+	quantidade int not null check(quantidade > 0),
+	id_fornecedor int not null check(id_fornecedor>0),
+	custo_venda float not null check(custo_venda>=0),
+	custo_compra float not null check(custo_compra>=0),
+	constraint stock_history_pk primary key( id ),
+	constraint stock_history_fk foreign key (id_peca) references Peca (id),
+	constraint stock_history_fk2 foreign key (id_fornecedor) references Fornecedor(id)
+);
+
 
 create table Tipo_Servico(
 	id SERIAL NOT NULL,
-	descricao varchar(100) not null,
+	nome varchar(100) not null,
 	constraint tipo_pk primary key( id )
 );
 
-create table serviço(
+create table servico(
 	id SERIAL NOT NULL,
 	id_TipoServico int not null,
 	id_funcionario int not null,
 	matricula varchar(6) not null,
 	descricao varchar(100) not null,
-	estado varchar(20) not null,
+	descricao_reparacao varchar(100),
+	id_estado int not null,
 	data_inicio date ,
 	data_fim date ,
+	created_at date not null,
 	constraint servico_pk primary key( id ),
 	constraint servico_fk foreign key (id_TipoServico) references tipo_servico (id),
 	constraint servico_fk2 foreign key (id_funcionario) references funcionario (id),
-	constraint servico_fk3 foreign key (matricula) references veiculo (matricula)
+	constraint servico_fk3 foreign key (id_estado) references estado_reparacao (id),
+	constraint servico_fk4 foreign key (matricula) references veiculo (matricula)
 );
 
 create table Peca_Servico(
@@ -105,18 +116,16 @@ create table Peca_Servico(
 	id_servico int not null,
 	id_stock int not null,
 	quantidade int not null check(quantidade>0),
-	valor_unitario float not null check(valor_unitario>0),
-	valor_total float not null check(valor_total>0),
 	constraint pecaservico_pk primary key( id )
 );
 
 
 -- inserir dados na tabela tipo_servico
-insert into tipo_servico(descricao) values('pintura');
-insert into tipo_servico(descricao) values('chaparia');
-insert into tipo_servico(descricao) values('mecanica');
-insert into tipo_servico(descricao) values('eletricista');
-insert into tipo_servico(descricao) values('revisao');
+insert into tipo_servico(nome) values('pintura');
+insert into tipo_servico(nome) values('chaparia');
+insert into tipo_servico(nome) values('mecanica');
+insert into tipo_servico(nome) values('eletricista');
+insert into tipo_servico(nome) values('revisao');
 
 -- inserir dados na tabela cliente
 insert into cliente(nome, telemovel, email, morada, created_at) values('antonio', 918945614, 'cliente@gmail.com', 'Ponte 25 de Abril', '2020-06-15');
@@ -145,14 +154,14 @@ insert into seccao(nome) values('mecanica');
 insert into seccao(nome) values('eletricista');
 
 --inserir dados na tabela de funcionarios
-insert into funcionario(id, id_secçao) values(1,1);
-insert into funcionario(id,id_secçao) values(2, 1);
-insert into funcionario(id,id_secçao) values(3,2);
-insert into funcionario(id,id_secçao) values(4,2);
-insert into funcionario(id,id_secçao) values(5, 3);
-insert into funcionario(id,id_secçao) values(6,3);
-insert into funcionario(id,id_secçao) values(7,4);
-insert into funcionario(id,id_secçao) values(8,4);
+insert into funcionario(id, id_seccao) values(1,1);
+insert into funcionario(id,id_seccao) values(2, 1);
+insert into funcionario(id,id_seccao) values(3,2);
+insert into funcionario(id,id_seccao) values(4,2);
+insert into funcionario(id,id_seccao) values(5, 3);
+insert into funcionario(id,id_seccao) values(6,3);
+insert into funcionario(id,id_seccao) values(7,4);
+insert into funcionario(id,id_seccao) values(8,4);
 
 --inserir dados na tabela de veiculos
 insert into veiculo(matricula, marca, modelo, ano, cliente_id) values ('AA00AA', 'Audi', 'A7', 2019, 10);
@@ -171,39 +180,54 @@ insert into fornecedor (nome, telefone, email, morada) values('PD Auto', 9189456
 insert into fornecedor (nome, telefone, email, morada) values('Stock Car', 918945614, 'stock@car.pt', 'Rua das Flores');
 
 --inserir dados na tabela de peca
-insert into peca (nome, modelo, marca, descricao, custo_venda, custo_compra) values ('Motor de Arranque', 'A7','Audi','Motor de arranque da marca Valeo para um Audi A7', 120.45, 90.67);
-insert into peca (nome, modelo, marca, descricao, custo_venda, custo_compra) values ('Motor de Arranque', 'A7','Audi','Motor de arranque da marca Bosh para um Audi A7', 150.00, 101.99);
-insert into peca (nome, modelo, marca, descricao, custo_venda, custo_compra) values ('Disco de travao', 'Golf','VW','Disco de travao da marca Valeo para um Golf', 71.43, 32);
-insert into peca (nome, modelo, marca, descricao, custo_venda, custo_compra) values ('Escovas limpa-vidros', 'C3','Citroen','Escovas limpa vidros da marca Bosh para um Citroen C3', 23.73, 11);
+insert into peca (nome, modelo, marca, descricao) values ('Motor de Arranque', 'A7','Audi','Motor de arranque da marca Valeo para um Audi A7');
+insert into peca (nome, modelo, marca, descricao) values ('Motor de Arranque', 'A7','Audi','Motor de arranque da marca Bosh para um Audi A7');
+insert into peca (nome, modelo, marca, descricao) values ('Disco de travao', 'Golf','VW','Disco de travao da marca Valeo para um Golf');
+insert into peca (nome, modelo, marca, descricao) values ('Escovas limpa-vidros', 'C3','Citroen','Escovas limpa vidros da marca Bosh para um Citroen C3');
 
 --inserir dados na tabela de stock
-insert into stock(id_peca, quantidade, id_fornecedor) values(1,2,1);
-insert into stock(id_peca, quantidade, id_fornecedor) values(1,14,4);
-insert into stock(id_peca, quantidade, id_fornecedor) values(2,32,3);
-insert into stock(id_peca, quantidade, id_fornecedor) values(2,4,1);
-insert into stock(id_peca, quantidade, id_fornecedor) values(2,1,2);
-insert into stock(id_peca, quantidade, id_fornecedor) values(3,2,1);
-insert into stock(id_peca, quantidade, id_fornecedor) values(3,2,2);
-insert into stock(id_peca, quantidade, id_fornecedor) values(4,4,3);
-insert into stock(id_peca, quantidade, id_fornecedor) values(4,7,1);
-insert into stock(id_peca, quantidade, id_fornecedor) values(4,1,2);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(1,2,1, 120.45, 90.67);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(1,14,4, 150.00, 101.99);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,32,3, 71.43, 32);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,4,1, 23.73, 11);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,1,2, 71.43, 32);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(3,2,1, 150.00, 101.99);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(3,2,2, 23.73, 11);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,4,3, 120.45, 90.67);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,7,1, 120.45, 90.67);
+insert into stock(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,1,2, 23.73, 11);
+
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(1,2,1, 120.45, 90.67);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(1,14,4, 150.00, 101.99);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,32,3, 71.43, 32);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,4,1, 23.73, 11);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(2,1,2, 71.43, 32);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(3,2,1, 150.00, 101.99);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(3,2,2, 23.73, 11);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,4,3, 120.45, 90.67);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,7,1, 120.45, 90.67);
+insert into stock_history(id_peca, quantidade, id_fornecedor, custo_venda, custo_compra) values(4,1,2, 23.73, 11);
+
+insert into Estado_Reparacao(nome) values('Para Reparar');
+insert into Estado_Reparacao(nome) values('Em reparacao');
+insert into Estado_Reparacao(nome) values('Finalizado');
 
 --inserir dados na tabela de serviços
-insert into serviço(id_tiposervico, id_funcionario, matricula, descricao, estado, data_inicio, data_fim)
-values(3, 1, 'AA22AA', 'O carro nao pega.', 'Em reparacao', '2020-06-15', '2020-06-16');
+insert into servico(id_tiposervico, id_funcionario, matricula, descricao, id_estado, data_inicio, data_fim, created_at)
+values(3, 1, 'AA22AA', 'O carro nao pega.', 2, '2020-06-15', '2020-06-16','2020-06-15');
 
-insert into serviço(id_tiposervico, id_funcionario, matricula, descricao, estado)
-values(1,2, 'CA00FD', 'Porta do condutor e porta esquerda traseira riscada', 'Para Reparar');
+insert into servico(id_tiposervico, id_funcionario, matricula, descricao, id_estado, created_at)
+values(1,2, 'CA00FD', 'Porta do condutor e porta esquerda traseira riscada', 1,'2020-01-10');
 
-insert into serviço(id_tiposervico, id_funcionario, matricula, descricao, estado, data_inicio, data_fim)
-values(2, 4, 'AT10PO', 'Traseira destruida', 'Finalizado', '2020-01-10', '2020-06-04');
+insert into servico(id_tiposervico, id_funcionario, matricula, descricao, descricao_reparacao,id_estado, data_inicio, data_fim, created_at)
+values(2, 4, 'AT10PO', 'Traseira destruida','Serviço de chaparia e pintura', 3, '2020-01-10', '2020-06-04','2020-01-10');
 
-insert into serviço(id_tiposervico, id_funcionario, matricula, descricao, estado, data_inicio, data_fim)
-values(5, 5, 'HG93YC', 'Revisao', 'Finalizado', '2020-06-15', '2020-06-15');
+insert into servico(id_tiposervico, id_funcionario, matricula, descricao, descricao_reparacao, id_estado, data_inicio, data_fim, created_at)
+values(5, 5, 'HG93YC', 'Revisao','Troca de oleo e filtros', 3, '2020-06-15', '2020-06-15','2020-06-15');
 
 --inserir dados na tabela peca_servico
-insert into peca_servico(id_servico, id_stock, quantidade, valor_unitario, valor_total)
-values (1, 1, 1, 120.45, 120.45);
+insert into peca_servico(id_servico, id_stock, quantidade)
+values (1, 1, 1);
 
-insert into peca_servico(id_servico, id_stock, quantidade, valor_unitario, valor_total)
-values (5, 6, 2, 120.45, 142.86);
+insert into peca_servico(id_servico, id_stock, quantidade)
+values (5, 6, 2);
