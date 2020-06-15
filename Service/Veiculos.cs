@@ -156,11 +156,28 @@ namespace Service
             }
         }
 
-        public static bool UpdateVeiculo(string matricula, string marca, string modelo, int cliente, string ano)
+        public static bool NewVeiculo(string matricula, string marca, string modelo, int ano, int client_id)
         {
             try
             {
-                string query = string.Format("Update veiculo set marca = '{1}', modelo = '{2}', ano = '{3}', cliente = {4} where matricula = UPPER('{0}');", matricula,marca,modelo,ano,cliente);
+                string query = string.Format("insert into veiculo(matricula,marca,modelo,ano,cliente_id) values(UPPER('{0}'), '{1}', '{2}', {3}, '{4}');", matricula, marca, modelo, ano, client_id);
+                NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
+                pgsqlConnection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                return reader.RecordsAffected != 0 ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool UpdateVeiculo(string matricula, string marca, string modelo, int cliente, int ano)
+        {
+            try
+            {
+                string query = string.Format("Update veiculo set marca = '{1}', modelo = '{2}', ano = {3}, cliente_id = {4} where UPPER(matricula) = UPPER('{0}');", matricula,marca,modelo,ano,cliente);
                 NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
                 pgsqlConnection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, pgsqlConnection);
@@ -183,13 +200,13 @@ namespace Service
                 if (matricula != string.Empty) build.Append(string.Format("matricula LIKE UPPER('{0}%') AND ", matricula));
                 if (marca != string.Empty) build.Append(string.Format("marca = '{0}' AND ", marca));
                 if (modelo != string.Empty) build.Append(string.Format("modelo = '{0}' AND ", modelo));
-                if (cliente != string.Empty) build.Append(string.Format("cli.nome LIKE '{0}%' AND ", cliente));
+                if (cliente != string.Empty) build.Append(string.Format("UPPER(cli.nome) LIKE UPPER('%{0}%') AND ", cliente));
                 if (ano != string.Empty) build.Append(string.Format("ano = {0}", Convert.ToInt32(ano)));
                 if (build.ToString().Substring(build.Length - 4) == "AND ")
                     build.Length -= 4;
                 else if(build.ToString().Substring(build.Length - 6) == "where ")
                     build.Length -= 6;
-                build.Append("order by id;");
+                build.Append(" order by matricula;");
                 //
 
                 DataTable dt = new DataTable();

@@ -31,8 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTService));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,12 +47,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabList = new System.Windows.Forms.TabPage();
             this.dgvList = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbDefault = new System.Windows.Forms.TabControl();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.label10 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabProcess.SuspendLayout();
             this.tabList.SuspendLayout();
@@ -131,7 +131,7 @@
             this.tabProcess.Controls.Add(this.label2);
             this.tabProcess.Location = new System.Drawing.Point(4, 25);
             this.tabProcess.Name = "tabProcess";
-            this.tabProcess.Size = new System.Drawing.Size(563, 234);
+            this.tabProcess.Size = new System.Drawing.Size(563, 221);
             this.tabProcess.TabIndex = 1;
             this.tabProcess.Text = "Processo";
             // 
@@ -200,7 +200,7 @@
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Descricao});
+            this.Nome});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -235,27 +235,9 @@
             this.dgvList.ShowCellToolTips = false;
             this.dgvList.ShowEditingIcon = false;
             this.dgvList.ShowRowErrors = false;
-            this.dgvList.Size = new System.Drawing.Size(569, 262);
+            this.dgvList.Size = new System.Drawing.Size(569, 221);
             this.dgvList.TabIndex = 2;
             this.dgvList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // Descricao
-            // 
-            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Descricao.DataPropertyName = "descricao";
-            this.Descricao.HeaderText = "Descricao";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
             // 
             // tbDefault
             // 
@@ -297,6 +279,7 @@
             this.menuStrip2.Size = new System.Drawing.Size(571, 37);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // label10
             // 
@@ -307,6 +290,24 @@
             this.label10.Size = new System.Drawing.Size(189, 25);
             this.label10.TabIndex = 5;
             this.label10.Text = "Tipos de Serviço";
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "id";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // Nome
+            // 
+            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nome.DataPropertyName = "nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
             // 
             // frmTService
             // 
@@ -356,9 +357,9 @@
         private System.Windows.Forms.ToolStripMenuItem btnGuardar;
         private System.Windows.Forms.ToolStripMenuItem btnCancelar;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
     }
 }

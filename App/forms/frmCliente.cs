@@ -23,13 +23,7 @@ namespace App.forms
         {
 
             UpdateGrid();
-            if (dgvList.Rows.Count > 0)
-            {
-                //cbBrand.DataSource = Veiculos.GetAllBrands();
-                //cbModelo.DataSource = Veiculos.GetAllModels();
-                //cbYear.DataSource = Veiculos.GetAllYears();
-            }
-            else
+            if(dgvList.Rows.Count == 0)
             {
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;

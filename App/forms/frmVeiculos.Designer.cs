@@ -44,7 +44,7 @@
             this.btnCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClose = new System.Windows.Forms.ToolStripMenuItem();
             this.tabProcess = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnClientes = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tbClienteEdit = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabList = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -67,9 +68,9 @@
             this.cbBrand = new System.Windows.Forms.ComboBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.tbDefault = new System.Windows.Forms.TabControl();
@@ -148,7 +149,7 @@
             // tabProcess
             // 
             this.tabProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabProcess.Controls.Add(this.button1);
+            this.tabProcess.Controls.Add(this.btnClientes);
             this.tabProcess.Controls.Add(this.label6);
             this.tabProcess.Controls.Add(this.tbClienteEdit);
             this.tabProcess.Controls.Add(this.label5);
@@ -165,14 +166,16 @@
             this.tabProcess.TabIndex = 1;
             this.tabProcess.Text = "Processo";
             // 
-            // button1
+            // btnClientes
             // 
-            this.button1.Location = new System.Drawing.Point(316, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Clientes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClientes.Enabled = false;
+            this.btnClientes.Location = new System.Drawing.Point(316, 146);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(75, 23);
+            this.btnClientes.TabIndex = 10;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // label6
             // 
@@ -220,6 +223,7 @@
             this.tbAno.Name = "tbAno";
             this.tbAno.Size = new System.Drawing.Size(112, 20);
             this.tbAno.TabIndex = 4;
+            this.tbAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAno_KeyPress);
             // 
             // tbMatriculaEdit
             // 
@@ -259,6 +263,7 @@
             // tabList
             // 
             this.tabList.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tabList.Controls.Add(this.label12);
             this.tabList.Controls.Add(this.cbYear);
             this.tabList.Controls.Add(this.label9);
             this.tabList.Controls.Add(this.label8);
@@ -276,12 +281,21 @@
             this.tabList.TabIndex = 0;
             this.tabList.Text = "Lista";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(533, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(26, 13);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Ano";
+            // 
             // cbYear
             // 
             this.cbYear.DisplayMember = "ano";
             this.cbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(606, 10);
+            this.cbYear.Location = new System.Drawing.Point(588, 52);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(103, 21);
             this.cbYear.TabIndex = 13;
@@ -290,7 +304,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 40);
+            this.label9.Location = new System.Drawing.Point(710, 56);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 13);
             this.label9.TabIndex = 10;
@@ -299,7 +313,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 13);
+            this.label8.Location = new System.Drawing.Point(710, 29);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 9;
@@ -308,7 +322,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(551, 38);
+            this.label7.Location = new System.Drawing.Point(533, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 8;
@@ -316,7 +330,7 @@
             // 
             // tbMatricula
             // 
-            this.tbMatricula.Location = new System.Drawing.Point(606, 35);
+            this.tbMatricula.Location = new System.Drawing.Point(588, 26);
             this.tbMatricula.Name = "tbMatricula";
             this.tbMatricula.Size = new System.Drawing.Size(103, 20);
             this.tbMatricula.TabIndex = 7;
@@ -325,7 +339,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(551, 61);
+            this.label1.Location = new System.Drawing.Point(18, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 6;
@@ -333,7 +347,7 @@
             // 
             // tbClient
             // 
-            this.tbClient.Location = new System.Drawing.Point(606, 58);
+            this.tbClient.Location = new System.Drawing.Point(73, 26);
             this.tbClient.Name = "tbClient";
             this.tbClient.Size = new System.Drawing.Size(300, 20);
             this.tbClient.TabIndex = 5;
@@ -344,7 +358,7 @@
             this.cbModelo.DisplayMember = "modelo";
             this.cbModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModelo.FormattingEnabled = true;
-            this.cbModelo.Location = new System.Drawing.Point(79, 37);
+            this.cbModelo.Location = new System.Drawing.Point(781, 53);
             this.cbModelo.Name = "cbModelo";
             this.cbModelo.Size = new System.Drawing.Size(121, 21);
             this.cbModelo.TabIndex = 4;
@@ -355,7 +369,7 @@
             this.cbBrand.DisplayMember = "marca";
             this.cbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBrand.FormattingEnabled = true;
-            this.cbBrand.Location = new System.Drawing.Point(79, 10);
+            this.cbBrand.Location = new System.Drawing.Point(781, 26);
             this.cbBrand.Name = "cbBrand";
             this.cbBrand.Size = new System.Drawing.Size(121, 21);
             this.cbBrand.TabIndex = 3;
@@ -382,9 +396,9 @@
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Matricula,
-            this.Ano,
             this.Marca,
             this.Modelo,
+            this.Ano,
             this.Cliente});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
@@ -420,7 +434,7 @@
             this.dgvList.ShowCellToolTips = false;
             this.dgvList.ShowEditingIcon = false;
             this.dgvList.ShowRowErrors = false;
-            this.dgvList.Size = new System.Drawing.Size(928, 286);
+            this.dgvList.Size = new System.Drawing.Size(928, 249);
             this.dgvList.TabIndex = 2;
             this.dgvList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseDoubleClick);
             // 
@@ -432,22 +446,12 @@
             this.Matricula.Name = "Matricula";
             this.Matricula.ReadOnly = true;
             // 
-            // Ano
-            // 
-            this.Ano.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Ano.DataPropertyName = "Ano";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ano.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Ano.HeaderText = "Ano";
-            this.Ano.Name = "Ano";
-            this.Ano.ReadOnly = true;
-            // 
             // Marca
             // 
             this.Marca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Marca.DataPropertyName = "Marca";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Marca.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Marca.DefaultCellStyle = dataGridViewCellStyle2;
             this.Marca.HeaderText = "Marca";
             this.Marca.Name = "Marca";
             this.Marca.ReadOnly = true;
@@ -457,12 +461,22 @@
             // 
             this.Modelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Modelo.DataPropertyName = "Modelo";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Modelo.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Modelo.DefaultCellStyle = dataGridViewCellStyle3;
             this.Modelo.HeaderText = "Modelo";
             this.Modelo.Name = "Modelo";
             this.Modelo.ReadOnly = true;
             this.Modelo.Width = 200;
+            // 
+            // Ano
+            // 
+            this.Ano.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Ano.DataPropertyName = "Ano";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ano.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Ano.HeaderText = "Ano";
+            this.Ano.Name = "Ano";
+            this.Ano.ReadOnly = true;
             // 
             // Cliente
             // 
@@ -525,6 +539,7 @@
             this.menuStrip2.Size = new System.Drawing.Size(933, 37);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // label11
             // 
@@ -590,7 +605,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbClienteEdit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.ToolStripMenuItem btnGuardar;
         private System.Windows.Forms.ToolStripMenuItem btnCancelar;
         private System.Windows.Forms.Label label7;
@@ -600,12 +615,13 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbYear;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ano;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Marca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Marca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ano;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
+        private System.Windows.Forms.Label label12;
     }
 }

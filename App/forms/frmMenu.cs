@@ -71,7 +71,8 @@ namespace App
         private void btnServices_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-
+            frmServico serv = new frmServico();
+            serv.ShowDialog();
             this.Visible = true;
         }
 

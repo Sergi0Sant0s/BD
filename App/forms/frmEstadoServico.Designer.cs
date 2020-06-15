@@ -1,6 +1,6 @@
 ﻿namespace App.forms
 {
-    partial class frmFornecedores
+    partial class frmEstadoServico
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFornecedores));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstadoServico));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,27 +41,14 @@
             this.btnCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClose = new System.Windows.Forms.ToolStripMenuItem();
             this.tabProcess = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbMorada = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.tbTelefone = new System.Windows.Forms.TextBox();
             this.tbNome = new System.Windows.Forms.TextBox();
             this.tbId = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabList = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbNomeSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbMoradaSearch = new System.Windows.Forms.TextBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Morada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbDefault = new System.Windows.Forms.TabControl();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
@@ -87,7 +73,7 @@
             this.btnClose});
             this.menuStrip1.Location = new System.Drawing.Point(0, 37);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(933, 37);
+            this.menuStrip1.Size = new System.Drawing.Size(571, 37);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
@@ -139,61 +125,15 @@
             // tabProcess
             // 
             this.tabProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabProcess.Controls.Add(this.label6);
-            this.tabProcess.Controls.Add(this.tbMorada);
-            this.tabProcess.Controls.Add(this.label5);
-            this.tabProcess.Controls.Add(this.tbEmail);
-            this.tabProcess.Controls.Add(this.tbTelefone);
             this.tabProcess.Controls.Add(this.tbNome);
             this.tabProcess.Controls.Add(this.tbId);
-            this.tabProcess.Controls.Add(this.label4);
             this.tabProcess.Controls.Add(this.label3);
             this.tabProcess.Controls.Add(this.label2);
             this.tabProcess.Location = new System.Drawing.Point(4, 25);
             this.tabProcess.Name = "tabProcess";
-            this.tabProcess.Size = new System.Drawing.Size(925, 351);
+            this.tabProcess.Size = new System.Drawing.Size(563, 221);
             this.tabProcess.TabIndex = 1;
             this.tabProcess.Text = "Processo";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 148);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Morada";
-            // 
-            // tbMorada
-            // 
-            this.tbMorada.Enabled = false;
-            this.tbMorada.Location = new System.Drawing.Point(100, 148);
-            this.tbMorada.Name = "tbMorada";
-            this.tbMorada.Size = new System.Drawing.Size(210, 20);
-            this.tbMorada.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 122);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Email";
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.Location = new System.Drawing.Point(100, 122);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(210, 20);
-            this.tbEmail.TabIndex = 6;
-            // 
-            // tbTelefone
-            // 
-            this.tbTelefone.Location = new System.Drawing.Point(100, 96);
-            this.tbTelefone.Name = "tbTelefone";
-            this.tbTelefone.Size = new System.Drawing.Size(210, 20);
-            this.tbTelefone.TabIndex = 5;
             // 
             // tbNome
             // 
@@ -209,15 +149,6 @@
             this.tbId.Name = "tbId";
             this.tbId.Size = new System.Drawing.Size(112, 20);
             this.tbId.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Telefone";
             // 
             // label3
             // 
@@ -240,51 +171,13 @@
             // tabList
             // 
             this.tabList.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabList.Controls.Add(this.label7);
-            this.tabList.Controls.Add(this.tbNomeSearch);
-            this.tabList.Controls.Add(this.label1);
-            this.tabList.Controls.Add(this.tbMoradaSearch);
             this.tabList.Controls.Add(this.dgvList);
             this.tabList.Location = new System.Drawing.Point(4, 25);
             this.tabList.Name = "tabList";
             this.tabList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabList.Size = new System.Drawing.Size(925, 351);
+            this.tabList.Size = new System.Drawing.Size(563, 221);
             this.tabList.TabIndex = 0;
             this.tabList.Text = "Lista";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Nome";
-            // 
-            // tbNomeSearch
-            // 
-            this.tbNomeSearch.Location = new System.Drawing.Point(63, 10);
-            this.tbNomeSearch.Name = "tbNomeSearch";
-            this.tbNomeSearch.Size = new System.Drawing.Size(300, 20);
-            this.tbNomeSearch.TabIndex = 7;
-            this.tbNomeSearch.TextChanged += new System.EventHandler(this.tbNomeSearch_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Morada";
-            // 
-            // tbMoradaSearch
-            // 
-            this.tbMoradaSearch.Location = new System.Drawing.Point(63, 36);
-            this.tbMoradaSearch.Name = "tbMoradaSearch";
-            this.tbMoradaSearch.Size = new System.Drawing.Size(300, 20);
-            this.tbMoradaSearch.TabIndex = 5;
-            this.tbMoradaSearch.TextChanged += new System.EventHandler(this.tbMoradaSearch_TextChanged);
             // 
             // dgvList
             // 
@@ -295,46 +188,43 @@
             this.dgvList.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvList.ColumnHeadersHeight = 45;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Nome,
-            this.Telefone,
-            this.Email,
-            this.Morada});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvList.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Nome});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvList.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvList.EnableHeadersVisualStyles = false;
             this.dgvList.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvList.Location = new System.Drawing.Point(-2, 102);
+            this.dgvList.Location = new System.Drawing.Point(-2, 0);
             this.dgvList.MultiSelect = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
             this.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvList.RowHeadersVisible = false;
             this.dgvList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvList.RowTemplate.ReadOnly = true;
@@ -345,7 +235,7 @@
             this.dgvList.ShowCellToolTips = false;
             this.dgvList.ShowEditingIcon = false;
             this.dgvList.ShowRowErrors = false;
-            this.dgvList.Size = new System.Drawing.Size(928, 249);
+            this.dgvList.Size = new System.Drawing.Size(569, 221);
             this.dgvList.TabIndex = 2;
             this.dgvList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseDoubleClick);
             // 
@@ -353,48 +243,19 @@
             // 
             this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Id.DataPropertyName = "id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle6;
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
-            this.Id.Width = 50;
             // 
             // Nome
             // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Nome.DataPropertyName = "nome";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Nome.DefaultCellStyle = dataGridViewCellStyle3;
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
-            this.Nome.Width = 250;
-            // 
-            // Telefone
-            // 
-            this.Telefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Telefone.DataPropertyName = "telefone";
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
-            this.Telefone.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Email.DataPropertyName = "email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            this.Email.Width = 150;
-            // 
-            // Morada
-            // 
-            this.Morada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Morada.DataPropertyName = "morada";
-            this.Morada.HeaderText = "Morada";
-            this.Morada.Name = "Morada";
-            this.Morada.ReadOnly = true;
             // 
             // tbDefault
             // 
@@ -407,7 +268,7 @@
             this.tbDefault.Name = "tbDefault";
             this.tbDefault.Padding = new System.Drawing.Point(0, 0);
             this.tbDefault.SelectedIndex = 0;
-            this.tbDefault.Size = new System.Drawing.Size(933, 380);
+            this.tbDefault.Size = new System.Drawing.Size(571, 250);
             this.tbDefault.TabIndex = 1;
             this.tbDefault.SelectedIndexChanged += new System.EventHandler(this.tbDefault_SelectedIndexChanged);
             this.tbDefault.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbDefault_Selected);
@@ -419,7 +280,7 @@
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(892, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(530, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(37, 35);
             this.btnMinimize.TabIndex = 3;
@@ -433,7 +294,7 @@
             this.menuStrip2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(933, 37);
+            this.menuStrip2.Size = new System.Drawing.Size(571, 37);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             this.menuStrip2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
@@ -442,18 +303,18 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(393, 7);
+            this.label10.Location = new System.Drawing.Point(161, 9);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 25);
+            this.label10.Size = new System.Drawing.Size(239, 25);
             this.label10.TabIndex = 5;
-            this.label10.Text = "Fornecedores";
+            this.label10.Text = "Estado de Reparação";
             // 
-            // frmFornecedores
+            // frmEstadoServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(933, 454);
+            this.ClientSize = new System.Drawing.Size(571, 324);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.tbDefault);
@@ -462,7 +323,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmFornecedores";
+            this.Name = "frmEstadoServico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVeiculos";
             this.Load += new System.EventHandler(this.frmVeiculos_Load);
@@ -471,7 +332,6 @@
             this.tabProcess.ResumeLayout(false);
             this.tabProcess.PerformLayout();
             this.tabList.ResumeLayout(false);
-            this.tabList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.tbDefault.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -490,28 +350,15 @@
         private System.Windows.Forms.TabControl tbDefault;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.DataGridView dgvList;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbMoradaSearch;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.TextBox tbTelefone;
         private System.Windows.Forms.TextBox tbNome;
         private System.Windows.Forms.TextBox tbId;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbMorada;
         private System.Windows.Forms.ToolStripMenuItem btnGuardar;
         private System.Windows.Forms.ToolStripMenuItem btnCancelar;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbNomeSearch;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Morada;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.Label label10;
     }

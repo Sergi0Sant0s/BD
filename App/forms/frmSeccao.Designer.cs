@@ -131,7 +131,7 @@
             this.tabProcess.Controls.Add(this.label2);
             this.tabProcess.Location = new System.Drawing.Point(4, 25);
             this.tabProcess.Name = "tabProcess";
-            this.tabProcess.Size = new System.Drawing.Size(563, 234);
+            this.tabProcess.Size = new System.Drawing.Size(563, 221);
             this.tabProcess.TabIndex = 1;
             this.tabProcess.Text = "Processo";
             // 
@@ -297,6 +297,7 @@
             this.menuStrip2.Size = new System.Drawing.Size(571, 37);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // label10
             // 

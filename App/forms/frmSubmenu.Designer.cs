@@ -35,6 +35,7 @@
             this.btnFornecedores = new System.Windows.Forms.Button();
             this.btnSeccao = new System.Windows.Forms.Button();
             this.btnTService = new System.Windows.Forms.Button();
+            this.btnState = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClientes
@@ -45,7 +46,7 @@
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClientes.Location = new System.Drawing.Point(72, 126);
+            this.btnClientes.Location = new System.Drawing.Point(71, 92);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnClientes.Size = new System.Drawing.Size(241, 62);
@@ -64,7 +65,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.Location = new System.Drawing.Point(72, 398);
+            this.btnExit.Location = new System.Drawing.Point(71, 432);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnExit.Size = new System.Drawing.Size(241, 62);
@@ -98,7 +99,7 @@
             this.btnFornecedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFornecedores.Image = ((System.Drawing.Image)(resources.GetObject("btnFornecedores.Image")));
             this.btnFornecedores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFornecedores.Location = new System.Drawing.Point(72, 194);
+            this.btnFornecedores.Location = new System.Drawing.Point(71, 160);
             this.btnFornecedores.Name = "btnFornecedores";
             this.btnFornecedores.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnFornecedores.Size = new System.Drawing.Size(241, 62);
@@ -117,7 +118,7 @@
             this.btnSeccao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeccao.Image = ((System.Drawing.Image)(resources.GetObject("btnSeccao.Image")));
             this.btnSeccao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeccao.Location = new System.Drawing.Point(72, 262);
+            this.btnSeccao.Location = new System.Drawing.Point(71, 228);
             this.btnSeccao.Name = "btnSeccao";
             this.btnSeccao.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnSeccao.Size = new System.Drawing.Size(241, 62);
@@ -136,7 +137,7 @@
             this.btnTService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTService.Image = ((System.Drawing.Image)(resources.GetObject("btnTService.Image")));
             this.btnTService.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTService.Location = new System.Drawing.Point(72, 330);
+            this.btnTService.Location = new System.Drawing.Point(71, 364);
             this.btnTService.Name = "btnTService";
             this.btnTService.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnTService.Size = new System.Drawing.Size(241, 62);
@@ -147,6 +148,25 @@
             this.btnTService.UseVisualStyleBackColor = false;
             this.btnTService.Click += new System.EventHandler(this.btnTService_Click);
             // 
+            // btnState
+            // 
+            this.btnState.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnState.FlatAppearance.BorderSize = 0;
+            this.btnState.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnState.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnState.Image = ((System.Drawing.Image)(resources.GetObject("btnState.Image")));
+            this.btnState.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnState.Location = new System.Drawing.Point(71, 296);
+            this.btnState.Name = "btnState";
+            this.btnState.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnState.Size = new System.Drawing.Size(241, 62);
+            this.btnState.TabIndex = 10;
+            this.btnState.Text = "Estado de Reparação";
+            this.btnState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnState.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnState.UseVisualStyleBackColor = false;
+            this.btnState.Click += new System.EventHandler(this.btnState_Click);
+            // 
             // frmSubmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,6 +174,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 575);
+            this.Controls.Add(this.btnState);
             this.Controls.Add(this.btnTService);
             this.Controls.Add(this.btnSeccao);
             this.Controls.Add(this.btnFornecedores);
@@ -179,6 +200,7 @@
         private System.Windows.Forms.Button btnFornecedores;
         private System.Windows.Forms.Button btnSeccao;
         private System.Windows.Forms.Button btnTService;
+        private System.Windows.Forms.Button btnState;
     }
 }
 

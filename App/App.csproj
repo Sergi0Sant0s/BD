@@ -80,11 +80,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\frmServico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmServico.Designer.cs">
+      <DependentUpon>frmServico.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmFuncionario.Designer.cs">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEstadoServico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEstadoServico.Designer.cs">
+      <DependentUpon>frmEstadoServico.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmStock.cs">
       <SubType>Form</SubType>
@@ -140,6 +152,12 @@
     <Compile Include="forms\frmVeiculos.Designer.cs">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms_auxiliares\frmChooseVeiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms_auxiliares\frmChooseVeiculo.Designer.cs">
+      <DependentUpon>frmChooseVeiculo.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms_auxiliares\frmChooseFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,8 +172,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="forms\frmServico.resx">
+      <DependentUpon>frmServico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmFuncionario.resx">
       <DependentUpon>frmFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEstadoServico.resx">
+      <DependentUpon>frmEstadoServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmStock.resx">
       <DependentUpon>frmStock.cs</DependentUpon>
@@ -183,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmVeiculos.resx">
       <DependentUpon>frmVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms_auxiliares\frmChooseVeiculo.resx">
+      <DependentUpon>frmChooseVeiculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms_auxiliares\frmChooseFornecedor.resx">
       <DependentUpon>frmChooseFornecedor.cs</DependentUpon>

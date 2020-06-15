@@ -493,6 +493,7 @@
             this.menuStrip2.Size = new System.Drawing.Size(933, 37);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // label11
             // 

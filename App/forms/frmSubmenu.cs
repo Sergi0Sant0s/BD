@@ -28,6 +28,7 @@ namespace App
             btnSeccao.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnFornecedores.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
             btnTService.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
+            btnState.BackColor = Color.FromArgb(trans, colDefault.R, colDefault.G, colDefault.B);
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -88,6 +89,14 @@ namespace App
             this.Visible = false;
             frmTService tService = new frmTService();
             tService.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnState_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmEstadoServico state = new frmEstadoServico();
+            state.ShowDialog();
             this.Visible = true;
         }
     }

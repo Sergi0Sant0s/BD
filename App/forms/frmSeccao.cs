@@ -23,13 +23,7 @@ namespace App.forms
         {
 
             UpdateGrid();
-            if (dgvList.Rows.Count> 0)
-            {
-                //cbBrand.DataSource = Veiculos.GetAllBrands();
-                //cbModelo.DataSource = Veiculos.GetAllModels();
-                //cbYear.DataSource = Veiculos.GetAllYears();
-            }
-            else
+            if(dgvList.Rows.Count == 0)
             {
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;
@@ -99,7 +93,7 @@ namespace App.forms
             {
                 /*Eliminar o veiculo*/
 
-                if(Veiculos.DeleteVeiculo(dgvList.SelectedRows[0].Cells[0].Value.ToString()))
+                if(Seccao.DeleteSeccao(Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value.ToString())))
                 {
                     MessageBox.Show("Secção eliminada com sucesso.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateGrid();
@@ -196,16 +190,16 @@ namespace App.forms
             if (!check)
             {
                 if (Seccao.NewSeccao(tbNome.Text))
-                    MessageBox.Show("Cliente adicionado com sucesso.");
+                    MessageBox.Show("Secção adicionada com sucesso.");
                 else
-                    MessageBox.Show("Não foi possivel adicionar o novo cliente.");
+                    MessageBox.Show("Não foi possivel adicionar a nova secção.");
             }
             else if (id != -1)
             {
                 if (Seccao.UpdateSeccao(id, tbNome.Text))
-                    MessageBox.Show("Cliente atualizado com sucesso.");
+                    MessageBox.Show("Secção atualizada com sucesso.");
                 else
-                    MessageBox.Show("Não foi possivel atualizar o cliente.");
+                    MessageBox.Show("Não foi possivel atualizar a secção.");
             }
 
             tbNome.Enabled = false;

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Text;
 
 namespace Service
@@ -36,6 +37,32 @@ namespace Service
                 throw ex;
             }
 
+        }
+
+        public static int GetNewId()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                using (NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs))
+                {
+
+                    // abre a conexão com o PgSQL e define a instrução SQL
+                    pgsqlConnection.Open();
+                    string cmdSeleciona = "SELECT last_value+1 FROM stock_id_seq;";
+
+                    using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, pgsqlConnection))
+                    {
+                        Adpt.Fill(dt);
+                    }
+                }
+                return Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public static bool DeleteStock(int id)
@@ -96,14 +123,16 @@ namespace Service
             }
         }
 
-        public static bool UpdateStock(int id, int id_fornecedor, double custo_venda, double custo_compra)
+        public static bool UpdateStock(int id, int id_fornecedor, string custo_venda, string custo_compra)
         {
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberDecimalSeparator = ".";
             NpgsqlTransaction transact = null;
             NpgsqlConnection pgsqlConnection = new NpgsqlConnection(Config.cs);
             pgsqlConnection.Open();
             List<NpgsqlCommand> commands = new List<NpgsqlCommand>();
-            string query1 = string.Format("update stock set id_fornecedor = {0}, custo_venda = {1}, custo_compra = {2} where id = {3};", id_fornecedor, custo_venda, custo_compra, id);
-            string query2 = string.Format("update stock_history set id_fornecedor = {0}, custo_venda = {1}, custo_compra = {2} where id = {3};", id_fornecedor, custo_venda, custo_compra, id);
+            string query1 = string.Format("update stock set id_fornecedor = {0}, custo_venda = {1}, custo_compra = {2} where id = {3};", id_fornecedor, double.Parse(custo_venda.ToString(nfi), CultureInfo.CurrentCulture), double.Parse(custo_compra.ToString(nfi), CultureInfo.CurrentCulture), id);
+            string query2 = string.Format("update stock_history set id_fornecedor = {0}, custo_venda = {1}, custo_compra = {2} where id = {3};", id_fornecedor, double.Parse(custo_venda.ToString(nfi), CultureInfo.CurrentCulture), double.Parse(custo_compra.ToString(nfi), CultureInfo.CurrentCulture), id);
 
             using (var transaction = pgsqlConnection.BeginTransaction(IsolationLevel.Serializable))
             {
@@ -125,19 +154,15 @@ namespace Service
             }
         }
 
-        public static DataTable Filter(int fornecedores)
+        public static DataTable Filter(int id, int fornecedores)
         {
             try
             {
                 StringBuilder build = new StringBuilder();
-                build.Append("select sto.id,sto.quantidade,forn.nome as fornecedor, sto.custo_venda, sto.custo_compra, sto.id_fornecedor from stock sto");
+                build.Append("select sto.id,sto.quantidade,forn.nome as fornecedor, sto.custo_venda, sto.custo_compra, sto.id_fornecedor from stock sto ");
                 build.Append("inner join fornecedor forn on sto.id_fornecedor = forn.id where ");
                 if (fornecedores != -1) build.Append(string.Format("id_fornecedor = {0} AND ", fornecedores));
-                if (build.ToString().Substring(build.Length - 4) == "AND ")
-                    build.Length -= 4;
-                else if (build.ToString().Substring(build.Length - 6) == "where ")
-                    build.Length -= 6;
-                build.Append("order by id;");
+                build.Append(string.Format("id_peca = {0} order by id;", id));
                 //
 
                 DataTable dt = new DataTable();
